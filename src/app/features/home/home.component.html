@@ -1,7 +1,7 @@
 <div class="app-container">
   <!-- Menu à gauche -->
   <nav class="sidebar">
-    <h3 class="mainText">Ordenagailuzaleak</h3>
+    <h3>Ordenagailuzaleak</h3>
     <ul>
       <li><a routerLink="/anti-gafam" class="menu">Anti-GAFAM</a></li>
       <li><a routerLink="/chatbot" class="menu">Chatbot</a></li>
@@ -21,6 +21,13 @@
 
   <!-- Image à droite -->
   <main class="main-content">
-    <img src="NDI_mainPage._2025_18_44_33.png" alt="Campus">
+    <div class="image-protection">
+      <img 
+        src="NDI_mainPage._2025_18_44_33.png" 
+        alt="Campus"
+        draggable="false"
+        oncontextmenu="return false;"
+        ondragstart="return false;">
+    </div>
   </main>
 </div>
