@@ -14,90 +14,14 @@
   <!-- Bureau Section -->
   <section class="team-section">
     <h2 class="section-title">LE BUREAU</h2>
-    <div class="members-grid bureau-grid">
-      @for (member of bureauMembers; track member.name) {
-        <div class="member-card">
-          <div class="member-image-container">
-            <img [src]="member.image" [alt]="member.name + ' ' + member.surname" class="member-image">
-          </div>
-          <div class="member-info">
-            <span class="member-role">{{ member.role }}</span>
-            <h3 class="member-name">{{ member.name }}</h3>
-            <p class="member-surname">{{ member.surname }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- Pôle Communication -->
-  <section class="team-section">
-    <h2 class="section-title">PÔLE COMMUNICATION</h2>
-    <div class="members-grid">
-      @for (member of communicationMembers; track member.name) {
-        <div class="member-card">
-          <div class="member-image-container">
-            <img [src]="member.image" [alt]="member.name + ' ' + member.surname" class="member-image">
-          </div>
-          <div class="member-info">
-            <span class="member-role">{{ member.role }}</span>
-            <h3 class="member-name">{{ member.name }}</h3>
-            <p class="member-surname">{{ member.surname }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- Pôle Développement -->
-  <section class="team-section">
-    <h2 class="section-title">PÔLE DÉVELOPPEMENT</h2>
-    <div class="members-grid">
-      @for (member of devMembers; track member.name) {
-        <div class="member-card">
-          <div class="member-image-container">
-            <img [src]="member.image" [alt]="member.name + ' ' + member.surname" class="member-image">
-          </div>
-          <div class="member-info">
-            <span class="member-role">{{ member.role }}</span>
-            <h3 class="member-name">{{ member.name }}</h3>
-            <p class="member-surname">{{ member.surname }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- Pôle Technique -->
-  <section class="team-section">
-    <h2 class="section-title">PÔLE TECHNIQUE</h2>
-    <div class="members-grid">
-      @for (member of techMembers; track member.name) {
-        <div class="member-card">
-          <div class="member-image-container">
-            <img [src]="member.image" [alt]="member.name + ' ' + member.surname" class="member-image">
-          </div>
-          <div class="member-info">
-            <span class="member-role">{{ member.role }}</span>
-            <h3 class="member-name">{{ member.name }}</h3>
-            <p class="member-surname">{{ member.surname }}</p>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <!-- Social Links -->
-  <section class="social-section">
-    <div class="social-links">
-      <a href="https://www.instagram.com/" target="_blank" class="social-link">
-        <i class="fab fa-instagram"></i>
-        Instagram
-      </a>
-      <a href="https://www.linkedin.com/" target="_blank" class="social-link">
-        <i class="fab fa-linkedin"></i>
-        LinkedIn
-      </a>
+    
+    <!-- Vidéo de présentation -->
+    <div class="video-container">
+      <video class="presentation-video" controls poster="assets/team/video-poster.jpg">
+        <source src="assets/team/presentation-bureau.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
+      <p class="video-caption">Découvrez notre équipe en vidéo !</p>
     </div>
   </section>
 </div>
