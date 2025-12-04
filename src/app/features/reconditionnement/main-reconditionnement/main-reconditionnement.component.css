@@ -1,0 +1,157 @@
+/* Variables pour les couleurs */
+:root {
+    --nird-blue: #0069a5; /* Bleu institutionnel */
+    --nird-green: #4caf50; /* Vert pour l'écologie */
+    --nird-yellow: #ffc107; /* Jaune pour la pédagogie/mise en avant */
+    --nird-red: #f44336; /* Rouge pour le social/solidarité (ou une autre couleur vive) */
+    --bg-color: #f7f7f7;
+    --text-color: #333;
+}
+
+.infographic-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: var(--text-color);
+}
+
+.infographic-header {
+    text-align: center;
+    border-bottom: 3px solid var(--nird-blue);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.infographic-header h1 {
+    color: var(--nird-blue);
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+
+.infographic-header p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.infographic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.pillar {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    min-height: 280px; /* Assurer une hauteur minimale pour l'alignement */
+}
+
+.pillar:hover {
+    transform: translateY(-5px);
+}
+
+/* Styles spécifiques aux piliers */
+.ecological {
+    background-color: #e8f5e9; /* Vert très clair */
+    border: 1px solid var(--nird-green);
+}
+.pedagogical {
+    background-color: #fffde7; /* Jaune très clair */
+    border: 1px solid var(--nird-yellow);
+}
+.social {
+    background-color: #fbecec; /* Rouge très clair */
+    border: 1px solid var(--nird-red);
+}
+
+.pillar h2 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.ecological h2 { color: var(--nird-green); }
+.pedagogical h2 { color: #f9a825; /* Orange plus foncé */ }
+.social h2 { color: var(--nird-red); }
+
+.pillar h3 {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.icon-circle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 1.5em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.key-figure {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.key-figure .value {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.highlight-eco { color: var(--nird-green); }
+.highlight-social { color: var(--nird-red); }
+
+.pillar ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.pillar ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.pillar ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: inherit;
+    font-weight: bold;
+}
+
+.infographic-footer {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsive Design pour les petits écrans */
+@media (max-width: 768px) {
+    .infographic-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+    .infographic-container {
+        padding: 15px;
+    }
+    .pillar {
+        min-height: auto;
+    }
+}
