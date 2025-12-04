@@ -58,6 +58,7 @@ Nous avons choisi de relever les défis suivants :
 - Rafael Masson
 - Mouhamadou Moussa Keita
 - Sylvain Trouilh
+
 2 étudiants de BUT Technique de Commercialisation
 - Carla Montamat
 - Sasha Ristori 
