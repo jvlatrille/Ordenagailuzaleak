@@ -46,6 +46,14 @@ h3 {
   letter-spacing: 0.3px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-icon {
+  font-size: 18px;
+  transition: all 0.3s ease;
 }
 
 .sidebar a::before {
