@@ -1,25 +1,21 @@
 <div class="page-container">
-  <button (click)="accueil()">Retour accueil</button>
   <header class="eco-header">
     <h1>Pourquoi garder son matériel ?</h1>
     <p>
-      La fabrication d'un ordinateur représente
-      <strong>70% à 80% de son empreinte carbone totale</strong>. Jeter un PC fonctionnel juste
-      parce que Windows est lent, c'est un gâchis immense.
-      <br />
-      <strong>La solution ?</strong> Installer un système léger (Linux) pour lui redonner vie
-      instantanément.
+      La fabrication d'un ordinateur représente <strong>80% de son empreinte carbone</strong>...
     </p>
-    <button class="restart-btn" (click)="restart()">Recommencer</button>
+    <div class="header-buttons">
+      <button (click)="accueil()">Retour accueil</button>
+      <button class="restart-btn" (click)="restart()">Recommencer</button>
+    </div>
   </header>
 
   <div class="room-background">
     <div class="instruction-hint" *ngIf="currentState === 'bsod'">
-      Glisse la clé USB sur la tour pour l'insérer
+      Glisse la clé USB sur la tour !
     </div>
-
     <div class="instruction-hint" *ngIf="currentState === 'terminal'">
-      TAPE SUR TON CLAVIER POUR INSTALLER !
+      TAPE SUR TON CLAVIER OU CLIQUE POUR INSTALLER !
     </div>
 
     <div class="desk-surface">
@@ -30,23 +26,20 @@
               <div *ngIf="currentState === 'bsod'" class="screen-text bsod">
                 <span>:(</span>
                 <h2>CRITICAL_ERROR</h2>
-                <p>System too old for Windows 11.</p>
-                <p>CPU is crying.</p>
+                <p>La version de Windows n'est pas compatible avec ce matériel.</p>
               </div>
-
               <div *ngIf="currentState === 'booting'" class="screen-text bios-boot">
-                <div class="energy-star">energy</div>
                 <div *ngFor="let log of bootLogs">{{ log }}</div>
-                <div class="cursor-block">_</div>
               </div>
-
               <div *ngIf="currentState === 'terminal'" class="screen-text terminal">
                 <div class="code">{{ currentTypedText }}<span class="cursor">_</span></div>
               </div>
-
               <div *ngIf="currentState === 'success'" class="screen-text success">
                 <div class="icon">🐧</div>
-                <h3>ALIVE!</h3>
+                <h3>PC SAUVÉ !</h3>
+                <button class="read-more-btn" (click)="scrollToDossier()">
+                  Pourquoi ça marche ?
+                </button>
               </div>
             </div>
           </div>
@@ -58,15 +51,8 @@
             <div class="usb-input-zone">
               <div class="usb-slot"></div>
               <div class="usb-slot"></div>
-              <span class="label">USB</span>
-            </div>
-            <div class="audio-jacks">
-              <div class="jack green"></div>
-              <div class="jack pink"></div>
             </div>
           </div>
-          <div class="power-btn"></div>
-          <div class="cd-drive"></div>
           <div class="vent-grid"></div>
         </div>
       </div>
@@ -74,13 +60,70 @@
       <div
         *ngIf="showUsb"
         class="usb-stick"
+        [class.hovering-target]="isOverZone"
         cdkDrag
         [cdkDragFreeDragPosition]="dragPosition"
+        (cdkDragStarted)="onDragStarted($event)"
+        (cdkDragMoved)="onDragMoved($event)"
         (cdkDragEnded)="checkDrop($event)"
       >
         <div class="usb-cap"></div>
-        <div class="usb-body">USB - LINUX</div>
+        <div class="usb-body">LINUX</div>
+        <div class="glow-effect" *ngIf="isOverZone"></div>
       </div>
     </div>
   </div>
+  <section class="nird-dossier" *ngIf="showReport">
+    <div class="container">
+      <h2 class="section-title">Numérique Responsable</h2>
+      <p class="intro-text">
+        Vous venez d'installer une distribution Linux légère sur une machine considérée comme
+        "obsolète" par le marché. Voici pourquoi ce geste est crucial.
+      </p>
+
+      <div class="grid-layout">
+        <article class="info-card warning">
+          <h3>🚨 Le Problème : L'Obésiciel</h3>
+          <p>
+            C'est l'obsolescence programmée logicielle. Windows 11 exige 4Go de RAM et un processeur
+            récent (TPM 2.0). Résultat : des millions de PC fonctionnels partent à la benne non pas
+            parce qu'ils sont cassés, mais parce qu'ils ne "supportent" plus le logiciel.
+          </p>
+        </article>
+
+        <article class="info-card impact">
+          <h3>🌍 L'Impact : La Fabrication</h3>
+          <div class="stat-box">
+            <span class="big">80%</span>
+            <span class="desc">de l'empreinte carbone d'un PC provient de sa fabrication.</span>
+          </div>
+          <p>
+            L'usage (électricité) ne représente que 20%. Le geste le plus écologique n'est pas
+            d'éteindre son PC, mais de <strong>ne pas en racheter un neuf</strong>.
+          </p>
+        </article>
+
+        <article class="info-card solution">
+          <h3>🐧 La Solution : Linux</h3>
+          <p>
+            Linux gère la mémoire différemment. Une distribution comme
+            <strong>Linux Mint XFCE</strong> consomme 500Mo de RAM au démarrage contre 3Go pour
+            Windows. <br /><br />
+            Cela permet de réutiliser des PC vieux de 10 à 15 ans avec une fluidité parfaite et une
+            sécurité moderne.
+          </p>
+        </article>
+
+        <article class="info-card action">
+          <h3>Agir maintenant</h3>
+          <p>Vous avez un vieux PC qui traîne ? Ne le jetez pas.</p>
+          <ul>
+            <li>Téléchargez une ISO (Mint, Lubuntu, Fedora).</li>
+            <li>Créez une clé bootable (avec Rufus ou Ventoy).</li>
+            <li>Offrez une seconde vie à votre matériel.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
 </div>
