@@ -207,3 +207,18 @@ h3 {
   box-shadow: 0 6px 20px rgba(30, 120, 18, 0.4);
   background: linear-gradient(135deg, #1e7812 0%, #1a8713 100%);
 }
+
+/* Synchronization hover state */
+.sidebar a.sync-hover {
+  background-color: rgba(30, 120, 18, 0.2);
+  transform: translateX(8px);
+}
+
+.sidebar a.sync-hover::before {
+  transform: scaleY(1);
+}
+
+.overlay-btn.sync-hover {
+  transform: translate(-50%, -100%) scale(1.15);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
