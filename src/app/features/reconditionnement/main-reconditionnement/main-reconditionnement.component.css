@@ -1,28 +1,29 @@
 /* ========================================= */
 /* VARIABLES & CONFIGURATION GLOBALE         */
 /* ========================================= */
-:root {
+.nird-unified-container {
   /* Couleurs NIRD */
   --nird-blue: #0069a5;
   --nird-green: #4caf50;
   --nird-yellow: #fbc02d;
   --nird-red: #e53935;
+  --nird-purple: #8e24aa;
+  --nird-orange: #ef6c00;
   
   /* Couleurs JEU */
   --game-bg: #2c3e50;
   --game-text: #ecf0f1;
   --game-accent: #f1c40f;
   --pixel-border: 4px solid #000;
-}
 
-.nird-unified-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1000px;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
+  overflow: visible; 
+  margin-bottom: 50px;
 }
 
 /* ========================================= */
@@ -30,30 +31,34 @@
 /* ========================================= */
 .infographic-header {
   text-align: center;
-  padding: 30px 20px;
+  padding: 60px 20px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-bottom: 4px solid var(--nird-blue);
+  border-bottom: 4px solid #0069a5;
 }
 
 .infographic-header h1 {
-  color: var(--nird-blue);
-  margin: 0 0 10px 0;
-  font-size: 2rem;
+  color: #0069a5;
+  margin: 0 0 20px 0;
+  font-size: 2.5rem;
 }
 
 .infographic-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 30px;
+  grid-template-columns: 1fr; 
+  gap: 60px;
+  padding: 60px 40px;
 }
 
 .pillar {
-  padding: 20px;
+  padding: 40px;
   border-radius: 12px;
   text-align: center;
   border: 1px solid rgba(0,0,0,0.1);
   transition: transform 0.3s;
+  min-height: 300px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pillar:hover { transform: translateY(-5px); }
@@ -61,33 +66,35 @@
 .ecological { background-color: #e8f5e9; border-top: 5px solid var(--nird-green); }
 .pedagogical { background-color: #fffde7; border-top: 5px solid var(--nird-yellow); }
 .social { background-color: #ffebee; border-top: 5px solid var(--nird-red); }
+.sovereign { background-color: #f3e5f5; border-top: 5px solid var(--nird-purple); }
+.budget { background-color: #fff3e0; border-top: 5px solid var(--nird-orange); }
 
-.icon-circle { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-.pillar h2 { font-size: 1.4rem; margin: 10px 0; color: #333; }
-.pillar h3 { font-size: 1rem; color: #666; font-weight: normal; margin-bottom: 15px; }
-.pillar ul { text-align: left; padding-left: 20px; font-size: 0.95rem; }
+.icon-circle { font-size: 3.5rem; margin-bottom: 20px; display: block; }
+.pillar h2 { font-size: 1.8rem; margin: 10px 0; color: #333; }
+.pillar h3 { font-size: 1.2rem; color: #666; font-weight: normal; margin-bottom: 25px; }
+.pillar ul { text-align: left; padding-left: 20px; font-size: 1.1rem; line-height: 1.6; }
 
 .key-figure {
-  margin-top: 20px;
+  margin-top: 30px;
   background: rgba(255,255,255,0.7);
-  padding: 10px;
+  padding: 20px;
   border-radius: 8px;
 }
-.key-figure .value { display: block; font-size: 2rem; font-weight: bold; line-height: 1.2; }
+.key-figure .value { display: block; font-size: 2.5rem; font-weight: bold; line-height: 1.2; }
 .highlight-eco { color: var(--nird-green); }
 .highlight-social { color: var(--nird-red); }
+.highlight-sovereign { color: var(--nird-purple); }
+.highlight-budget { color: var(--nird-orange); }
 
-/* ========================================= */
-/* SÉPARATEUR VISUEL                         */
-/* ========================================= */
 .separator-banner {
-  background-color: var(--nird-blue);
-  color: white;
+  background-color: #0069a5;
+  color: #ffffff;
   text-align: center;
-  padding: 15px;
+  padding: 25px;
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
+  font-size: 1.2rem;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -95,102 +102,111 @@
 /* SECTION 2 : MINI-JEU (PIXEL ART)          */
 /* ========================================= */
 .game-container {
-  background-color: var(--game-bg);
-  color: var(--game-text);
-  padding: 20px;
-  min-height: 450px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 40px 20px;
+  min-height: 700px; /* Allongé un peu pour l'espace */
   position: relative;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .game-title {
   text-align: center;
-  color: var(--game-accent);
+  color: #f1c40f;
   text-shadow: 2px 2px 0 #000;
   margin-top: 0;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .game-instructions {
   background: rgba(0,0,0,0.5);
   display: inline-block;
-  padding: 8px 15px;
+  padding: 15px 25px;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border: 1px solid #fff;
   width: 100%;
   box-sizing: border-box;
   text-align: center;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 20;
 }
 
 /* --- SCÈNE 1 : SALLE DE CLASSE --- */
-/* Image de fond générée en SVG : Mur bleu avec plinthes et sol carrelé */
 .classroom-scene {
   width: 100%;
-  max-width: 600px;
-  height: 280px;
+  max-width: 800px;
+  height: 300px;
   margin: 0 auto;
   position: relative;
   box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-  border: var(--pixel-border);
-  
-  /* SVG Background: Mur + Sol */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' fill='%2385c1e9'/%3E%3Crect y='70' width='100' height='30' fill='%237f8c8d'/%3E%3Cline x1='0' y1='70' x2='100' y2='70' stroke='%232c3e50' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: cover;
+  border: 4px solid #000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect width='100' height='75' fill='%2385c1e9'/%3E%3Crect y='75' width='100' height='25' fill='%237f8c8d'/%3E%3Cline x1='0' y1='75' x2='100' y2='75' stroke='%232c3e50' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
 }
 
-/* Cachettes communes */
+.classroom-scene::before {
+  content: '';
+  position: absolute;
+  top: 50px; 
+  left: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 0; 
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Crect width='120' height='80' fill='%232c3e50' stroke='%237f8c8d' stroke-width='4'/%3E%3Ctext x='10' y='30' fill='white' font-family='Courier' font-size='10'%3ENIRD = LIBRE%3C/text%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%2381d4fa' stroke='%232c3e50' stroke-width='4'/%3E%3Crect x='10' y='20' width='20' height='10' fill='white' opacity='0.8'/%3E%3Crect x='40' y='40' width='30' height='15' fill='white' opacity='0.8'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%2381d4fa' stroke='%232c3e50' stroke-width='4'/%3E%3Crect x='15' y='30' width='25' height='12' fill='white' opacity='0.8'/%3E%3Crect x='50' y='10' width='15' height='10' fill='white' opacity='0.8'/%3E%3C/svg%3E");
+  background-size: 120px 80px, 80px 80px, 80px 80px;
+  background-position: 50px 20px, 250px 20px, 500px 20px; 
+  background-repeat: no-repeat;
+}
+
 .hiding-spot {
   position: absolute;
   cursor: pointer;
   transition: transform 0.1s;
+  z-index: 5; 
 }
-.hiding-spot:hover { filter: brightness(1.2); transform: scale(1.02); }
+.hiding-spot:hover { filter: brightness(1.2); }
+.hiding-spot:active { animation: shake 0.2s ease-in-out; }
 
-/* BUREAU (Pixel Art SVG) */
 .desk-1 {
   width: 80px; height: 50px;
-  bottom: 20px; left: 40px;
-  /* Table en bois */
+  bottom: 20px; left: 80px; 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 50'%3E%3Crect width='80' height='10' fill='%23d35400' stroke='%23000' stroke-width='2'/%3E%3Crect x='5' y='10' width='10' height='40' fill='%23a04000'/%3E%3Crect x='65' y='10' width='10' height='40' fill='%23a04000'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
 }
 
-/* POUBELLE (Pixel Art SVG) */
 .trash-can {
   width: 30px; height: 40px;
-  bottom: 20px; right: 50px;
-  /* Poubelle métal */
+  bottom: 20px; right: 80px; 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 40'%3E%3Cpath d='M2,5 L28,5 L25,40 L5,40 Z' fill='%2395a5a6' stroke='%23000' stroke-width='2'/%3E%3Crect x='0' y='0' width='30' height='5' fill='%237f8c8d' stroke='%23000'/%3E%3Cline x1='10' y1='10' x2='10' y2='35' stroke='%23555' stroke-width='2'/%3E%3Cline x1='20' y1='10' x2='20' y2='35' stroke='%23555' stroke-width='2'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
 }
 
-/* ARMOIRE (Pixel Art SVG) */
 .cupboard-zone {
   width: 90px; height: 130px;
-  bottom: 30px; left: 50%;
+  bottom: 25px; left: 50%; 
   transform: translateX(-50%);
-  /* Armoire fermée */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 130'%3E%3Crect width='90' height='130' fill='%235d4037' stroke='%233e2723' stroke-width='4'/%3E%3Cline x1='45' y1='0' x2='45' y2='130' stroke='%233e2723' stroke-width='2'/%3E%3Ccircle cx='40' cy='65' r='3' fill='%23f1c40f'/%3E%3Ccircle cx='50' cy='65' r='3' fill='%23f1c40f'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
 }
 
-/* Armoire Ouverte */
 .classroom-scene.cupboard-is-open .cupboard-zone {
-  /* Armoire ouverte avec étagères */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 130'%3E%3Crect width='90' height='130' fill='%234e342e' stroke='%233e2723' stroke-width='4'/%3E%3Crect x='5' y='10' width='80' height='110' fill='%233e2723'/%3E%3Crect x='5' y='40' width='80' height='5' fill='%235d4037'/%3E%3Crect x='5' y='90' width='80' height='5' fill='%235d4037'/%3E%3C/svg%3E");
 }
 
-/* PC visible dans l'armoire */
 .classroom-scene.cupboard-is-open .cupboard-zone::after {
   content: '';
   width: 40px; height: 30px;
   position: absolute;
   top: 55%; left: 50%;
   transform: translate(-50%, -50%);
-  /* Mini PC portable gris */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='5' y='5' width='30' height='20' rx='2' fill='%2395a5a6' stroke='%23000'/%3E%3Crect x='8' y='8' width='24' height='14' fill='%232c3e50'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='28' y='2' width='10' height='26' fill='%2395a5a6' stroke='%232c3e50' stroke-width='1'/%3E%3Crect x='2' y='5' width='24' height='18' fill='%2395a5a6' stroke='%232c3e50' stroke-width='1'/%3E%3Crect x='4' y='7' width='20' height='14' fill='%232c3e50'/%3E%3Crect x='10' y='23' width='8' height='2' fill='%2395a5a6'/%3E%3Crect x='8' y='25' width='12' height='3' fill='%2395a5a6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  animation: bounce 1s infinite;
 }
 
 .feedback-message {
@@ -211,52 +227,79 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 40px;
+  align-items: center; /* Alignement vertical */
+}
+
+/* CONTENEUR BOITE A OUTILS + BOUTON SUIVANT */
+.toolbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
 .laptop-preview {
-  width: 220px; height: 150px;
+  width: 260px; height: 180px;
   border: 4px solid #2c3e50;
   border-radius: 4px;
   position: relative;
   transition: all 0.5s;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: #333; /* Fond par défaut */
 }
 
-/* ÉTAT 1 : SALE (PC gris + tâches) */
-.laptop-preview.is-dirty {
+/* ÉTAT 1 : SALE */
+.laptop-preview.state-1-dirty {
   background-color: #95a5a6;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='20' cy='30' r='5' fill='rgba(109,76,65,0.5)'/%3E%3Ccircle cx='70' cy='60' r='8' fill='rgba(109,76,65,0.5)'/%3E%3Ccircle cx='50' cy='20' r='4' fill='rgba(109,76,65,0.5)'/%3E%3C/svg%3E");
 }
 
-/* ÉTAT 2 : PROPRE (PC propre gris foncé) */
-.laptop-preview.is-clean-empty {
-  background-color: #34495e;
-  box-shadow: 0 0 15px #3498db;
-  /* Écran noir vide */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 150'%3E%3Crect x='10' y='10' width='200' height='130' fill='%23000' opacity='0.3'/%3E%3C/svg%3E");
+/* ÉTAT 2 : ERREUR DISQUE (Rouge) 
+   MODIF : Le texte est dans ::after pour clignoter SEUL, le fond reste noir fixe */
+.laptop-preview.state-2-hdd-error {
+  background-color: #000;
+  box-shadow: 0 0 15px #ff0000;
+}
+.laptop-preview.state-2-hdd-error::after {
+  content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='red' font-family='Courier New' font-weight='bold' font-size='14'%3ESTOCKAGE LENT ET INSUFFISANT%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: blink 2s step-end infinite; /* Ralenti à 2s */
 }
 
-/* ÉTAT 3 : FINI (Matrix Code) */
-.laptop-preview.is-finished {
+/* ÉTAT 3 : ERREUR RAM (Vert) */
+.laptop-preview.state-3-ram-error {
   background-color: #000;
-  box-shadow: 0 0 20px #2ecc71;
-  /* Code vert style Matrix */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='150'%3E%3Ctext x='10' y='30' font-family='monospace' font-size='14' fill='%232ecc71'%3E010101 SYSTEM%3C/text%3E%3Ctext x='10' y='50' font-family='monospace' font-size='14' fill='%232ecc71'%3EOK LINUX...%3C/text%3E%3Ctext x='10' y='70' font-family='monospace' font-size='14' fill='%232ecc71'%3EBOOT READY%3C/text%3E%3C/svg%3E");
+  box-shadow: 0 0 15px #2ecc71;
+}
+.laptop-preview.state-3-ram-error::after {
+  content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180'%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%232ecc71' font-family='Courier New' font-weight='bold' font-size='16'%3EMEMOIRE VIVE FAIBLE...%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%232ecc71' font-family='Courier New' font-weight='bold' font-size='16'%3EORDINATEUR RALENTI...%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ÉTAT 4 : FINI (Bleu) */
+.laptop-preview.state-4-finished {
+  background-color: #00a2ed;
+  box-shadow: 0 0 20px #00a2ed;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180'%3E%3Crect x='30' y='40' width='200' height='100' fill='white' stroke='%230078d7' stroke-width='2'/%3E%3Crect x='30' y='40' width='200' height='20' fill='%230078d7'/%3E%3Ctext x='130' y='100' dominant-baseline='middle' text-anchor='middle' fill='black' font-family='Segoe UI, sans-serif' font-size='14'%3EOrdinateur prêt à être utilisé%3C/text%3E%3C/svg%3E");
 }
 
 .toolbox {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .tool-item {
   background: #ecf0f1;
   color: #333;
-  padding: 12px;
-  width: 140px;
+  padding: 15px;
+  width: 200px; /* Élargi pour le texte plus long */
   border: 3px solid #7f8c8d;
   cursor: pointer;
   font-weight: bold;
@@ -268,33 +311,35 @@
   justify-content: center;
   gap: 10px;
 }
-.tool-item:hover:not(.locked):not(.used) {
-  transform: scale(1.05);
-  border-color: var(--game-accent);
-}
+.tool-item:hover:not(.locked):not(.used) { transform: scale(1.05); border-color: #f1c40f; }
 
-/* ICÔNES OUTILS (SVG INLINE dans CSS) */
-/* Chiffon */
 .tool-item.cloth::before {
   content: ''; display: inline-block; width: 20px; height: 20px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' fill='%233498db' rx='5'/%3E%3C/svg%3E");
 }
-/* SSD */
 .tool-item.ssd::before {
   content: ''; display: inline-block; width: 20px; height: 20px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' fill='%23bdc3c7' stroke='%23000'/%3E%3Crect x='5' y='5' width='10' height='10' fill='%23000'/%3E%3C/svg%3E");
 }
-/* RAM */
 .tool-item.ram::before {
   content: ''; display: inline-block; width: 20px; height: 10px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'%3E%3Crect width='20' height='10' fill='%2327ae60' stroke='%23000'/%3E%3Crect x='2' y='2' width='4' height='6' fill='%23000'/%3E%3Crect x='8' y='2' width='4' height='6' fill='%23000'/%3E%3Crect x='14' y='2' width='4' height='6' fill='%23000'/%3E%3C/svg%3E");
 }
 
-
 .tool-item.locked { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
 .tool-item.used { opacity: 0.5; text-decoration: line-through; border-color: var(--nird-green); background: #dcedc8; cursor: default; }
 
-/* --- POPUP DE FIN --- */
+/* BOUTON ET APRÈS */
+.next-step-btn {
+    background: #f1c40f;
+    color: #000;
+    border: 3px solid #f39c12;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    animation: bounce 1s infinite;
+}
+
 .success-popup-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -302,7 +347,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 100; /* Z-INDEX AUGMENTÉ pour passer devant les instructions (20) */
 }
 
 .success-popup {
@@ -320,14 +365,14 @@
 
 .final-step-box {
   background: #e3f2fd;
-  border: 2px dashed var(--nird-blue);
+  border: 2px solid #0069a5; /* MODIF : SOLID au lieu de DASHED */
   padding: 10px;
   margin: 15px 0;
   font-family: sans-serif;
 }
 
 .pixel-btn {
-  background: var(--nird-blue);
+  background: #0069a5;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -340,5 +385,22 @@
 }
 .pixel-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
 
-@keyframes bounce { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -60%); } }
+@keyframes slow-float-shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2px, 2px); }
+  50% { transform: translate(0, 4px); }
+  75% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(1px, 0) rotate(0deg); }
+  50% { transform: translate(-1px, 0) rotate(0deg); }
+  75% { transform: translate(1px, 0) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
