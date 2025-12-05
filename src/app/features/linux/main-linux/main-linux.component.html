@@ -1,1 +1,86 @@
-<p>main-linux works!</p>
+<div class="page-container">
+  <button (click)="accueil()">Retour accueil</button>
+  <header class="eco-header">
+    <h1>Pourquoi garder son matériel ?</h1>
+    <p>
+      La fabrication d'un ordinateur représente
+      <strong>70% à 80% de son empreinte carbone totale</strong>. Jeter un PC fonctionnel juste
+      parce que Windows est lent, c'est un gâchis immense.
+      <br />
+      <strong>La solution ?</strong> Installer un système léger (Linux) pour lui redonner vie
+      instantanément.
+    </p>
+    <button class="restart-btn" (click)="restart()">Recommencer</button>
+  </header>
+
+  <div class="room-background">
+    <div class="instruction-hint" *ngIf="currentState === 'bsod'">
+      Glisse la clé USB sur la tour pour l'insérer
+    </div>
+
+    <div class="instruction-hint" *ngIf="currentState === 'terminal'">
+      TAPE SUR TON CLAVIER POUR INSTALLER !
+    </div>
+
+    <div class="desk-surface">
+      <div class="pc-setup" #pcDropZone>
+        <div class="monitor-stand">
+          <div class="monitor-bezel">
+            <div class="screen-content" [ngClass]="currentState">
+              <div *ngIf="currentState === 'bsod'" class="screen-text bsod">
+                <span>:(</span>
+                <h2>CRITICAL_ERROR</h2>
+                <p>System too old for Windows 11.</p>
+                <p>CPU is crying.</p>
+              </div>
+
+              <div *ngIf="currentState === 'booting'" class="screen-text bios-boot">
+                <div class="energy-star">energy</div>
+                <div *ngFor="let log of bootLogs">{{ log }}</div>
+                <div class="cursor-block">_</div>
+              </div>
+
+              <div *ngIf="currentState === 'terminal'" class="screen-text terminal">
+                <div class="code">{{ currentTypedText }}<span class="cursor">_</span></div>
+              </div>
+
+              <div *ngIf="currentState === 'success'" class="screen-text success">
+                <div class="icon">🐧</div>
+                <h3>ALIVE!</h3>
+              </div>
+            </div>
+          </div>
+          <div class="monitor-foot"></div>
+        </div>
+
+        <div class="pc-tower">
+          <div class="front-panel-top">
+            <div class="usb-input-zone">
+              <div class="usb-slot"></div>
+              <div class="usb-slot"></div>
+              <span class="label">USB</span>
+            </div>
+            <div class="audio-jacks">
+              <div class="jack green"></div>
+              <div class="jack pink"></div>
+            </div>
+          </div>
+          <div class="power-btn"></div>
+          <div class="cd-drive"></div>
+          <div class="vent-grid"></div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="showUsb"
+        class="usb-stick"
+        cdkDrag
+        [cdkDragFreeDragPosition]="dragPosition"
+        (cdkDragEnded)="checkDrop($event)"
+      >
+        <div class="usb-cap"></div>
+        <div class="usb-body">USB - LINUX</div>
+      </div>
+    </div>
+  </div>
+</div>
