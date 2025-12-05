@@ -1,0 +1,519 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button {
+  border: black 2px solid;
+}
+/* HEADER */
+.eco-header {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  border: black 2px solid;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.eco-header h1 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+.header-buttons {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+button {
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: var(--color-light);
+  transition: transform 0.1s;
+}
+button:active {
+  transform: scale(0.95);
+}
+
+/* ZONE DE JEU */
+.room-background {
+  min-height: 60vh;
+  background-color: var(--color-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* Empêche scroll horizontal */
+}
+
+.instruction-hint {
+  position: absolute;
+  top: 10%;
+  background: var(--color-light);
+  color: var(--color-primary);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: black;
+  font-weight: bold;
+  z-index: 20;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: float 2s infinite ease-in-out;
+  text-align: center;
+  max-width: 90%;
+}
+.terminal-hint {
+  background: black;
+  color: #0f0;
+  border: 1px solid #0f0;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* BUREAU ET PC - RESPONSIVE */
+.desk-surface {
+  width: 100%;
+  height: 35vh; /* Hauteur relative */
+  background: #795548;
+  border-top: 15px solid #5d4037;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  gap: 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.pc-setup {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  /* On utilise clamp pour que le PC ne soit jamais trop petit ni trop grand */
+  transform-origin: bottom center;
+}
+
+/* ECRAN */
+.monitor-stand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.monitor-bezel {
+  width: clamp(200px, 45vw, 400px); /* Largeur adaptative */
+  aspect-ratio: 16/10;
+  background: #333;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.screen-content {
+  width: 100%;
+  height: 100%;
+  background: black;
+  position: relative;
+  overflow: hidden;
+}
+.monitor-foot {
+  width: 40%;
+  height: 20px;
+  background: #222;
+  margin-top: -2px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* TOUR */
+.pc-tower {
+  width: clamp(50px, 12vw, 100px);
+  height: clamp(180px, 35vh, 300px);
+  background: #ecf0f1;
+  border: 2px solid #bdc3c7;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+.front-panel-top {
+  width: 80%;
+  background: #bdc3c7;
+  padding: 5px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.usb-input-zone {
+  display: flex;
+  gap: 4px;
+  position: relative; /* permit absolute positioning of plugged USB */
+}
+.usb-slot {
+  width: 20px;
+  height: 3px;
+  background: #2c3e50;
+}
+.power-led {
+  width: 8px;
+  height: 8px;
+  background: #e74c3c;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #e74c3c;
+}
+.vent-grid {
+  margin-top: auto;
+  margin-bottom: 10px;
+  width: 80%;
+  height: 40px;
+  background: repeating-linear-gradient(0deg, #bdc3c7, #bdc3c7 2px, #95a5a6 2px, #95a5a6 4px);
+}
+
+/* CONTENU ECRANS */
+.screen-text {
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+.bsod {
+  background: #2980b9;
+  justify-content: center;
+  text-align: center;
+}
+.bsod span {
+  font-size: 3rem;
+  display: block;
+}
+.bios-boot {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #bdc3c7;
+  line-height: 1.2;
+}
+.terminal {
+  background: #111;
+  color: #2ecc71;
+  font-family: monospace;
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+.success {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.success .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.success h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* BOUTON LIRE LA SUITE */
+.read-more-btn {
+  margin-top: 15px;
+  background: white;
+  color: var(--color-primary);
+  border: 2px solid white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: pulseBtn 2s infinite;
+}
+@keyframes pulseBtn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CLÉ USB */
+.usb-stick {
+  position: absolute;
+  bottom: 80px;
+  right: 10%;
+  z-index: 9999;
+  cursor: grab;
+  touch-action: none; /* Crucial pour mobile */
+  transition: transform 0.1s;
+}
+.usb-stick.hovering-target {
+  transform: scale(1.4);
+  cursor: copy;
+  filter: drop-shadow(0 0 10px #2ecc71);
+}
+.usb-cap {
+  display: inline-block;
+  width: 10px;
+  height: 24px;
+  background: #7f8c8d;
+  vertical-align: middle;
+  border-radius: 2px 0 0 2px;
+}
+.usb-body {
+  display: inline-block;
+  width: 70px;
+  height: 24px;
+  background: var(--color-dark);
+  vertical-align: middle;
+  color: white;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 0 4px 4px 0;
+}
+
+.nird-dossier {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  border-top: 8px solid var(--color-dark);
+  animation: slideUp 0.8s ease-out;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  color: var(--color-dark);
+  border-bottom: 3px solid var(--color-green);
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+.intro-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.info-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #ccc;
+}
+.info-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.warning {
+  border-color: #c0392b;
+}
+.warning h3 {
+  color: #c0392b;
+}
+.solution {
+  border-color: #2980b9;
+}
+.solution h3 {
+  color: #2980b9;
+}
+.impact {
+  border-color: #27ae60;
+  background: #e8f5e9;
+}
+.impact h3 {
+  color: #27ae60;
+}
+.action {
+  border-color: #e67e22;
+}
+.action h3 {
+  color: #e67e22;
+}
+
+.stat-box {
+  text-align: center;
+  margin: 15px 0;
+}
+.stat-box .big {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #27ae60;
+  display: block;
+}
+
+.nird-footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* --- MOBILE SPECIFIC --- */
+@media (max-width: 600px) {
+  .desk-surface {
+    height: 30vh;
+    gap: 5px;
+  }
+  .pc-setup {
+    transform: scale(0.9);
+    transform-origin: bottom center;
+  }
+  .usb-stick {
+    right: 20px;
+    bottom: 60px;
+    transform: scale(1.2);
+  } /* Plus gros pour le doigt */
+  .monitor-bezel {
+    width: 90vw;
+  }
+  .room-background {
+    min-height: 100vh;
+  } /* Plein écran sur mobile */
+}
+
+/* --- LE FAUX BUREAU WINDOWS --- */
+.windows-desktop {
+  background-color: #3a6ea5; /* Bleu Windows classique */
+  position: relative;
+  font-family: sans-serif;
+  color: white;
+  padding: 10px;
+}
+
+.win-icon {
+  width: 40px;
+  text-align: center;
+  font-size: 8px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px black;
+}
+.win-icon::before {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 20px;
+  background: white;
+  margin: 0 auto 2px auto;
+  border: 1px solid #ccc;
+}
+
+.win-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #c0c0c0;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  color: black;
+}
+.start-btn {
+  background: linear-gradient(to bottom, #2ecc71, #27ae60);
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0 10px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 16px;
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: 1px 1px 0 black;
+  margin-right: auto;
+}
+.time {
+  font-size: 9px;
+  border-left: 1px solid #888;
+  padding-left: 5px;
+  margin-right: 5px;
+}
+
+.usb-stick-plugged {
+  position: absolute;
+  top: 6px; /* sits near the top of the front panel */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  animation: plugIn 0.18s ease-out;
+}
+
+.usb-body-plugged {
+  width: 44px; /* Un peu plus courte car enfoncée */
+  height: 14px;
+  background: var(--color-dark);
+  color: white;
+  font-size: 7px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px; /* coins arrondis */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transform: rotate(90deg);
+  transform-origin: center;
+  position: relative;
+  padding: 0 6px;
+}
+
+@keyframes plugIn {
+  from {
+    transform: translateX(-50%) scale(2);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.usb-stick {
+  z-index: 999;
+}
