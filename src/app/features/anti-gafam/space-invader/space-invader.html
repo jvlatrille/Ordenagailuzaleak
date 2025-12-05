@@ -1,0 +1,42 @@
+<div class="game-container">
+  <h2>Angular Space Invaders</h2>
+  <div class="score">Score: {{ score }}</div>
+
+  <div class="board" [style.width.px]="BOARD_WIDTH" [style.height.px]="BOARD_HEIGHT">
+    
+    <div class="overlay" *ngIf="isGameOver || isVictory">
+      <h1 [style.color]="isVictory ? 'green' : 'red'">
+        {{ isVictory ? 'VICTOIRE !' : 'GAME OVER' }}
+      </h1>
+      <button (click)="restart()">Rejouer</button>
+    </div>
+
+    <div class="player"
+         [style.left.px]="player.x"
+         [style.top.px]="player.y"
+         [style.width.px]="player.width"
+         [style.height.px]="player.height">
+         🚀
+    </div>
+
+    <ng-container *ngFor="let enemy of enemies">
+      <div class="enemy" *ngIf="enemy.alive"
+           [style.left.px]="enemy.x"
+           [style.top.px]="enemy.y"
+           [style.width.px]="enemy.width"
+           [style.height.px]="enemy.height">
+           👾
+      </div>
+    </ng-container>
+
+    <div class="bullet" *ngFor="let bullet of bullets"
+         [style.left.px]="bullet.x"
+         [style.top.px]="bullet.y"
+         [style.width.px]="bullet.width"
+         [style.height.px]="bullet.height">
+    </div>
+
+  </div>
+  
+  <p class="controls">Utilisez ← → pour bouger et ESPACE pour tirer.</p>
+</div>
