@@ -168,6 +168,7 @@ button:active {
 .usb-input-zone {
   display: flex;
   gap: 4px;
+  position: relative; /* permit absolute positioning of plugged USB */
 }
 .usb-slot {
   width: 20px;
@@ -264,7 +265,7 @@ button:active {
   position: absolute;
   bottom: 80px;
   right: 10%;
-  z-index: 100;
+  z-index: 9999;
   cursor: grab;
   touch-action: none; /* Crucial pour mobile */
   transition: transform 0.1s;
@@ -296,7 +297,6 @@ button:active {
   border-radius: 0 4px 4px 0;
 }
 
-/* --- RAPPORT NIRD (Apparition fluide) --- */
 .nird-dossier {
   background: #f9f9f9;
   padding: 40px 20px;
@@ -478,27 +478,29 @@ button:active {
 
 .usb-stick-plugged {
   position: absolute;
-  top: 12px;
+  top: 6px; /* sits near the top of the front panel */
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
-  animation: plugIn 0.2s ease-out;
+  animation: plugIn 0.18s ease-out;
 }
 
 .usb-body-plugged {
-  width: 40px; /* Un peu plus courte car enfoncée */
-  height: 12px;
-  background: var(--color-accent); /* Orange */
+  width: 44px; /* Un peu plus courte car enfoncée */
+  height: 14px;
+  background: var(--color-dark);
   color: white;
-  font-size: 6px;
-  font-weight: bold;
+  font-size: 7px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 0 2px 2px; /* Forme verticale */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  /* On la met verticale pour simuler qu'elle sort de la tour */
+  border-radius: 2px; /* coins arrondis */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   transform: rotate(90deg);
+  transform-origin: center;
+  position: relative;
+  padding: 0 6px;
 }
 
 @keyframes plugIn {
