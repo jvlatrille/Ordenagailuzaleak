@@ -3,13 +3,13 @@
   /* Override des couleurs Bootstrap */
   --bs-primary: #1e7812;
   --bs-primary-rgb: 30, 120, 18;
-  
+
   --bs-dark: #081806;
   --bs-dark-rgb: 8, 24, 6;
-  
+
   --bs-light: #effced;
   --bs-light-rgb: 239, 252, 237;
-  
+
   /* Variables custom si besoin */
   --color-primary: #1e7812;
   --color-dark: #081806;
@@ -17,11 +17,13 @@
 }
 
 /* Reset de base */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow: hidden;
+  /* allow the page to scroll when content is taller than viewport */
+  min-height: 100vh;
+  overflow-y: auto;
   font-family: 'Montserrat', sans-serif;
 }
 
