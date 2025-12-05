@@ -5,8 +5,8 @@ import { FloatingBackBtnComponent } from '../../../shared/components/floating-ba
   selector: 'app-main-carte-talents',
   imports: [FloatingBackBtnComponent],
   templateUrl: './main-carte-talents.component.html',
-  styleUrl: './main-carte-talents.component.css'
+  styleUrls: ['./main-carte-talents.component.css']
 })
 export class MainCarteTalentsComponent {
-
+  
 }
