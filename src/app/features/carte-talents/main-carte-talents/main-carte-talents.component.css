@@ -1,8 +1,13 @@
 /* Host Element */
 :host {
   display: block;
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Main Container */
@@ -24,12 +29,23 @@
   font-size: 3.5rem;
   font-weight: 800;
   letter-spacing: 0.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: linear-gradient(90deg, var(--color-primary), #2a9d1c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
+}
+
+.goo-small {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .team-intro {
@@ -43,19 +59,17 @@
 }
 
 .team-group-photo {
-  max-width: 450px;
-  width: 100%;
+  flex: 1;
+  max-width: 400px;
   height: auto;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(30, 120, 18, 0.3);
-  flex-shrink: 0;
 }
 
 .intro-text {
+  flex: 1;
   font-size: 1.2rem;
   line-height: 1.8;
   color: var(--color-dark);
-  max-width: 500px;
+  max-width: 400px;
   text-align: left;
 }
 
@@ -307,4 +321,4 @@
     justify-content: center;
   }
 }
-}
+
