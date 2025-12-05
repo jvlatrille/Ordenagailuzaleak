@@ -1,0 +1,51 @@
+:root {
+  --color-primary: #1e7812;
+  --color-light: #f7fff7;
+  --color-dark: #1b1b1b;
+}
+
+.main-content {
+  padding: 28px;
+  background: #fff;
+  overflow-y: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fff6 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(30, 120, 18, 0.06);
+}
+
+.content-card h1 {
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.content-card h3 {
+  color: var(--color-primary);
+}
+
+.hero-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+app-space-invader {
+  display: block;
+}
