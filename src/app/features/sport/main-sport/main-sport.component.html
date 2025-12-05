@@ -1,1 +1,299 @@
-<p>main-sport works!</p>
+<div class="container my-5">
+  <h1 class="display-4 text-center mb-4">CTO de Votre Santé Posturale</h1>
+    <div class="text-center mb-4">
+      @for (step of steps; track step) {
+        <button 
+          class="btn m-2"
+          [ngClass]="currentStep === step ? 'btn-primary' : 'btn-outline-secondary'"
+          [disabled]="!canAccessStep(step)"
+          (click)="proceedToStep(step)">
+          Étape {{ step }}
+        </button>
+      } @empty {
+        <span class="text-muted">Aucune étape disponible</span>
+      }
+    </div>
+
+  @if (currentStep === 1) {
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Profil Sportif</h2>
+        
+        <div class="row">
+          <!-- Niveau Card -->
+          <div class="col-lg-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <label class="fw-bold">Niveau</label>
+                <div>
+                  @for (l of levelOptions; track l) {
+                    <button type="button" class="btn m-1" [ngClass]="sportProfile.level === l ? 'btn-success' : 'btn-outline-success'" (click)="setLevel(l)">{{ l }}</button>
+                  } @empty {
+                    <!-- no levels -->
+                  }
+                </div>
+                <div class="mt-2">
+                  <small>Niveau sélectionné : <strong>{{ getLevelLabel() }}</strong></small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sports Card -->
+          <div class="col-lg-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <label class="fw-bold">Sports pratiqués</label>
+                <div class="checkbox-two-columns">
+                  @for (s of sportsOptions; track s) {
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" [id]="'s'+s" [checked]="sportProfile.sports.includes(s)" (change)="toggleSport(s)">
+                      <label class="form-check-label" [for]="'s'+s">{{ s }}</label>
+                    </div>
+                  } @empty {
+                    <em class="text-muted">Aucune option de sport</em>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objectifs Card -->
+          <div class="col-lg-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <label class="fw-bold">Objectifs</label>
+                <div class="checkbox-two-columns">
+                  @for (o of objectivesOptions; track o) {
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" [id]="'o'+o" [checked]="sportProfile.objectives.includes(o)" (change)="toggleObjective(o)">
+                      <label class="form-check-label" [for]="'o'+o">{{ o }}</label>
+                    </div>
+                  } @empty {
+                    <em class="text-muted">Aucun objectif disponible</em>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zones sensibles Card -->
+          <div class="col-lg-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <label class="fw-bold">Zones sensibles</label>
+                <div class="checkbox-two-columns">
+                  @for (i of injuriesOptions; track i) {
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" [id]="'i'+i" [checked]="sportProfile.injuries.includes(i)" (change)="toggleInjury(i)">
+                      <label class="form-check-label" [for]="'i'+i">{{ i }}</label>
+                    </div>
+                  } @empty {
+                    <em class="text-muted">Aucune zone sensible listée</em>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3" (click)="proceedToStep(2)" [disabled]="!canProceedToStep2()">Continuer</button>
+      </div>
+    </div>
+  }
+
+  @if (currentStep === 2) {
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Instructions Personnalisées pour Vous</h2>
+        
+        <div class="row">
+          <!-- Profil Card -->
+          <div class="col-lg-4 mb-3">
+            <div class="card h-100 bg-light">
+              <div class="card-body">
+                <h5 class="card-title">Votre profil</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-2"><strong>Niveau :</strong> <span class="badge bg-primary">{{ getLevelLabel() }}</span></li>
+                  <li class="mb-2"><strong>Sports :</strong><br>{{ sportProfile.sports.join(', ') }}</li>
+                  @if (sportProfile.objectives.length > 0) {
+                    <li class="mb-2"><strong>Objectifs :</strong><br>{{ sportProfile.objectives.join(', ') }}</li>
+                  }
+                  @if (sportProfile.injuries.length > 0 && !sportProfile.injuries.includes('Aucune')) {
+                    <li class="mb-2"><strong>Zones sensibles :</strong><br><span class="text-danger">{{ getInjuriesDisplay() }}</span></li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommandations Card -->
+          <div class="col-lg-8 mb-3">
+            <div class="card h-100">
+              <div class="card-body" style="overflow-y: auto; max-height: 600px;">
+                <h5 class="card-title">Recommandations adaptées</h5>
+                <div class="list-group list-group-two-columns">
+                  @for (instruction of getPersonalizedInstructions(); track instruction) {
+                    <div class="list-group-item">{{ instruction }}</div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-secondary" (click)="proceedToStep(1)">Retour</button>
+          <button class="btn btn-primary flex-grow-1" (click)="proceedToStep(3)">Voir les mouvements recommandés</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (currentStep === 3) {
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Mouvements Recommandés</h2>
+        
+        <div class="row">
+          <!-- Liste des mouvements -->
+          <div class="col-lg-5">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Choisissez un mouvement</h5>
+                <div class="movements-list">
+                  @for (m of getFilteredMovements(); track m.id) {
+                    <div class="card mb-2" [ngClass]="selectedMovement?.id === m.id ? 'border-primary shadow' : ''" (click)="selectMovement(m)" style="cursor:pointer">
+                      <div class="card-body p-3">
+                        <h6 class="card-title mb-2">{{ m.name }} 
+                          <span class="badge" [ngClass]="{
+                            'bg-success': m.difficulty==='easy', 
+                            'bg-warning text-dark': m.difficulty==='medium', 
+                            'bg-danger': m.difficulty==='hard'
+                          }">
+                            {{ m.difficulty === 'easy' ? 'Facile' : m.difficulty === 'medium' ? 'Moyen' : 'Difficile' }}
+                          </span>
+                        </h6>
+                        <p class="card-text small mb-0">{{ m.description }}</p>
+                      </div>
+                    </div>
+                  } @empty {
+                    <div class="alert alert-info">Aucun mouvement trouvé</div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Détails du mouvement sélectionné -->
+          <div class="col-lg-7">
+            @if (selectedMovement) {
+              <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white">
+                  <strong>{{ selectedMovement.name }}</strong>
+                  <span class="float-end badge bg-light text-dark">
+                    {{ selectedMovement.difficulty === 'easy' ? 'Facile' : selectedMovement.difficulty === 'medium' ? 'Moyen' : 'Difficile' }}
+                  </span>
+                </div>
+                <div class="card-body" style="overflow-y: auto; max-height: 600px;">
+                  <p class="text-muted fst-italic mb-4">{{ selectedMovement.description }}</p>
+                  
+                  <h5 class="mt-3">Instructions adaptées à votre profil</h5>
+                  <div class="alert alert-warning mb-3">
+                    <small><strong>Ces instructions tiennent compte de votre niveau, objectifs et zones sensibles</strong></small>
+                  </div>
+                  <ol class="two-columns">
+                    @for (inst of customInstructions; track inst) {
+                      <li class="mb-2">{{ inst }}</li>
+                    } @empty {
+                      <li class="text-muted">Pas d'instructions personnalisées</li>
+                    }
+                  </ol>
+                  
+                  <h5 class="mt-4">Bénéfices</h5>
+                  <ul class="two-columns">
+                    @for (b of selectedMovement.benefits; track b) {
+                      <li>{{ b }}</li>
+                    } @empty {
+                      <li class="text-muted">Aucun bénéfice listé</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            } @else {
+              <div class="card h-100 bg-light">
+                <div class="card-body d-flex align-items-center justify-content-center">
+                  <div class="text-center text-muted">
+                    <h5 class="mt-3">Sélectionnez un mouvement</h5>
+                    <p>Cliquez sur un mouvement à gauche pour voir les détails et instructions personnalisées</p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-secondary" (click)="proceedToStep(2)">Retour</button>
+          <button class="btn btn-primary flex-grow-1" (click)="proceedToStep(4)" [disabled]="!selectedMovement">
+            Voir les produits recommandés
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (currentStep === 4) {
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Produits Decathlon Recommandés</h2>
+
+        @if (selectedMovement && selectedMovement.decathlonProducts) {
+          <div class="alert alert-success mb-4">
+            <strong>Pour pratiquer {{ selectedMovement.name }}</strong>, voici notre sélection d'équipements adaptés :
+          </div>
+          <div class="row">
+            @for (p of selectedMovement.decathlonProducts; track p.link) {
+              <div class="col-md-6 mb-3">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">{{ p.name }}</h5>
+                    <p class="text-muted mb-3">
+                      <small><strong>Catégorie :</strong> {{ p.category }}</small>
+                    </p>
+                    <a href="{{ p.link }}" target="_blank" class="btn btn-primary w-100">
+                      Voir sur Decathlon
+                    </a>
+                  </div>
+                </div>
+              </div>
+            } @empty {
+              <div class="col-12">
+                <div class="alert alert-info">Pas de produits spécifiques pour ce mouvement.</div>
+              </div>
+            }
+          </div>
+          
+          <div class="alert alert-light mt-4">
+            <small>
+              <strong>Conseil :</strong> Ces produits sont recommandés pour optimiser votre pratique, 
+              mais beaucoup d'exercices peuvent être réalisés sans équipement spécialisé.
+            </small>
+          </div>
+        }
+
+        @if (!selectedMovement) {
+          <div class="alert alert-warning">
+            Veuillez sélectionner un mouvement à l'étape précédente pour voir les produits recommandés.
+          </div>
+        }
+
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-secondary" (click)="proceedToStep(3)">Retour aux mouvements</button>
+          <button class="btn btn-success flex-grow-1" (click)="resetProfile()">Nouveau programme</button>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>
