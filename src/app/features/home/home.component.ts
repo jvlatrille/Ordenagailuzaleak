@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,15 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  constructor(private router: Router) {}
+
   ngOnInit() {
+    // Permet d'accéder à home si les intros ont été complétées
+    const completed = localStorage.getItem('introCompleted');
+    if (completed !== 'true') {
+      this.router.navigate(['/']);
+      return;
+    }
     this.setupHoverSync();
   }
 

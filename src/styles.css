@@ -21,9 +21,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  /* allow the page to scroll when content is taller than viewport */
-  min-height: 100vh;
-  overflow-y: auto;
+  height: 100vh;
   font-family: 'Montserrat', sans-serif;
 }
 
