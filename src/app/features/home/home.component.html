@@ -1,15 +1,15 @@
 <div class="app-container">
   <!-- Menu à gauche -->
   <nav class="sidebar">
-    <h3 class="mainText">Ordenagailuzaleak</h3>
+    <h3>Ordenagailuzaleak</h3>
     <ul>
-      <li><a routerLink="/anti-gafam" class="menu">Anti-GAFAM</a></li>
-      <li><a routerLink="/chatbot" class="menu">Chatbot</a></li>
-      <li><a routerLink="/demarche" class="menu">Demarche</a></li>
-      <li><a routerLink="/reconditionnement" class="menu">Reconditionnement</a></li>
-      <li><a routerLink="/linux" class="menu">Linux</a></li>
-      <li><a routerLink="/reseau-etablissement" class="menu">Réseau Établissement</a></li>
-      <li><a routerLink="/sport" class="menu">Sport</a></li>
+      <li><a routerLink="/anti-gafam" class="menu" data-target="anti-gafam"><i class="bi bi-shield-lock menu-icon"></i>Anti-GAFAM</a></li>
+      <li><a routerLink="/demarche" class="menu" data-target="demarche"><i class="bi bi-arrow-repeat menu-icon"></i>Demarche</a></li>
+      <li><a routerLink="/reconditionnement" class="menu" data-target="reconditionnement"><i class="bi bi-laptop menu-icon"></i>Reconditionnement</a></li>
+      <li><a routerLink="/linux" class="menu" data-target="linux"><i class="bi bi-terminal menu-icon"></i>Linux</a></li>
+      <li><a routerLink="/reseau-etablissement" class="menu" data-target="reseau-etablissement"><i class="bi bi-diagram-2 menu-icon"></i>Réseau Établissement</a></li>
+      <li><a routerLink="/sport" class="menu" data-target="sport"><i class="bi bi-trophy menu-icon"></i>Sport</a></li>
+      <li><a routerLink="/chatbot" class="menu" data-target="chatbot"><i class="bi bi-chat-dots menu-icon"></i>Chatbot</a></li>
     </ul>
 
     <div class="carte-talents-container">
@@ -19,8 +19,39 @@
     </div>
   </nav>
 
-  <!-- Image à droite -->
+  <!-- Image à droite avec boutons -->
   <main class="main-content">
-    <img src="NDI_mainPage._2025_18_44_33.png" alt="Campus">
+    <div class="image-overlay">
+      <!-- Boutons positionnables - ajustez top/left en % -->
+      <button class="overlay-btn" style="top: 22%; left: 40%;" routerLink="/reconditionnement" data-target="reconditionnement">
+        <span class="btn-text">Reconditionnement</span>
+        <i class="bi bi-laptop btn-icon"></i>
+      </button>
+      
+      <button class="overlay-btn" style="top: 70%; left: 70%;" routerLink="/linux" data-target="linux">
+        <span class="btn-text">Linux</span>
+        <i class="bi bi-terminal btn-icon"></i>
+      </button>
+      
+      <button class="overlay-btn" style="top: 12%; left: 78%;" routerLink="/sport" data-target="sport">
+        <span class="btn-text">Sport</span>
+        <i class="bi bi-trophy btn-icon"></i>
+      </button>
+
+            <button class="overlay-btn" style="top: 30%; left: 66%;" routerLink="/anti-gafam" data-target="anti-gafam">
+        <span class="btn-text">Anti-GAFAM</span>
+        <i class="bi bi-shield-lock btn-icon"></i>
+      </button>
+
+      <button class="overlay-btn" style="top: 28%; left: 54%;" routerLink="/demarche" data-target="demarche">
+        <span class="btn-text">Demarche</span>
+        <i class="bi bi-arrow-repeat btn-icon"></i>
+      </button>
+
+      <button class="overlay-btn" style="top: 62%; left: 27%;" routerLink="/reseau-etablissement" data-target="reseau-etablissement">
+        <span class="btn-text">Réseau Établissement</span>
+        <i class="bi bi-diagram-2 btn-icon"></i>
+      </button>
+    </div>
   </main>
 </div>
