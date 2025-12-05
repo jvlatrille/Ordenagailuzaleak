@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
 import { DragDropModule, CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 
@@ -12,33 +12,33 @@ import { CommonModule } from '@angular/common';
 export class MainLinuxComponent {
   @ViewChild('pcDropZone') pcDropZone!: ElementRef;
 
-  currentState: 'bsod' | 'terminal' | 'success' | 'booting' = 'bsod';
+  currentState: 'bsod' | 'booting' | 'terminal' | 'success' = 'bsod';
   showUsb = true;
   isDragging = false;
   isOverZone = false;
   dragPosition = { x: 0, y: 0 };
-
-  // NOUVEAU : Le rapport est caché par défaut
   showReport = false;
 
   bootLogs: string[] = [];
   biosLines = [
     'AMIBIOS (C) 2005 American Megatrends, Inc.',
-    'BIOS Date: 10/22/2005 15:22:11 Ver: 08.00.12',
     'CPU : Intel Pentium 4 @ 2.40GHz',
     'Checking NVRAM.. OK',
     '512MB RAM DETECTED',
-    'USB Device Found : LINUX DRIVE',
-    'Loading Kernel...',
-    'Booting from USB Device...',
+    'USB Device Found : Linux NIRD KEY',
+    'Loading Eco-Kernel...',
+    'Booting Linux NIRD...',
   ];
 
+  // Commande d'installation
   fullCommand =
-    'sudo install-linux --save-planet\n> Formatting Windows...\n> Installing Linux Mint...\n> Drivers loaded.\n> System is ready.';
+    'sudo install-linux NIRD--save-planet\n> Formatting Windows...\n> Installing Linux NIRD...\n> Drivers loaded.\n> System is ready.';
   currentTypedText = '';
   charIndex = 0;
 
   constructor(private cdr: ChangeDetectorRef) {}
+
+  // --- GESTION DU DRAG & DROP ---
 
   onDragStarted(event: CdkDragStart) {
     this.isDragging = true;
@@ -54,8 +54,10 @@ export class MainLinuxComponent {
 
     if (isHit && this.currentState === 'bsod') {
       this.isOverZone = false;
+      // Lancement immédiat de la séquence
       this.startBootSequence();
     } else {
+      // Raté : on remet la clé à sa place
       this.isOverZone = false;
       this.dragPosition = { x: 0, y: 0 };
     }
@@ -64,7 +66,7 @@ export class MainLinuxComponent {
   checkCollision(point: { x: number; y: number }): boolean {
     if (!this.pcDropZone) return false;
     const rect = this.pcDropZone.nativeElement.getBoundingClientRect();
-    const margin = 60; // Marge augmentée pour mobile
+    const margin = 100;
     return (
       point.x >= rect.left - margin &&
       point.x <= rect.right + margin &&
@@ -73,75 +75,96 @@ export class MainLinuxComponent {
     );
   }
 
+  // --- BOOT AUTOMATIQUE ---
   startBootSequence() {
-    this.showUsb = false; // La clé disparait (elle est dans le PC)
+    this.showUsb = false;
     this.currentState = 'booting';
-    this.bootLogs = []; // On reset les logs pour éviter les doublons
-    this.cdr.detectChanges(); // On force l'affichage immédiat
+    this.bootLogs = [];
+    this.cdr.detectChanges();
 
     let i = 0;
-
-    // On lance une boucle qui s'exécute toutes les 600ms
     const interval = setInterval(() => {
       if (i < this.biosLines.length) {
-        // On ajoute la ligne suivante
         this.bootLogs.push(this.biosLines[i]);
         i++;
-        this.cdr.detectChanges(); // IMPORTANT : Force l'écran à afficher la nouvelle ligne
+        this.cdr.detectChanges();
       } else {
-        // C'est fini, on passe au terminal
         clearInterval(interval);
         setTimeout(() => {
           this.currentState = 'terminal';
           this.currentTypedText = '> ';
           this.cdr.detectChanges();
-        }, 1000); // Petite pause d'1 seconde avant de donner la main
+        }, 800);
       }
-    }, 600); // Vitesse du défilement
+    }, 500);
   }
 
   @HostListener('document:keydown', ['$event'])
   @HostListener('document:click', ['$event'])
   handleInteraction(event: Event) {
     if (this.currentState === 'terminal') {
+      // Bloque le comportement par défaut (ex: espace qui scroll)
       if (event instanceof KeyboardEvent) event.preventDefault();
+
       this.typeNextChar();
     }
   }
 
   typeNextChar() {
-    const speed = 4; // Plus rapide
-    for (let k = 0; k < speed; k++) {
-      if (this.charIndex < this.fullCommand.length) {
-        this.currentTypedText += this.fullCommand.charAt(this.charIndex);
-        this.charIndex++;
-      }
-    }
+    if (this.charIndex < this.fullCommand.length) {
+      // Ajoute le caractère suivant
+      this.currentTypedText += this.fullCommand.charAt(this.charIndex);
+      this.charIndex++;
+      this.cdr.detectChanges();
 
-    // Scroll auto du terminal
-    setTimeout(() => {
+      // Scroll automatique vers le bas
       const term = document.querySelector('.terminal');
       if (term) term.scrollTop = term.scrollHeight;
-    }, 0);
 
-    if (this.charIndex >= this.fullCommand.length) {
-      setTimeout(() => {
-        this.currentState = 'success';
-      }, 500);
+      // Si on a fini la commande, on passe en mode auto
+      if (this.charIndex >= this.fullCommand.length) {
+        setTimeout(() => {
+          this.autoTypeCommand();
+        }, 500);
+      }
     }
   }
 
-  // MODIFIÉ : Affiche le rapport puis scroll
-  scrollToDossier() {
-    this.showReport = true; // 1. On révèle la section
-    this.cdr.detectChanges(); // 2. On force Angular à l'afficher dans le DOM
+  autoTypeCommand() {
+    // Écrit le code tout seul, caractère par caractère
+    const typingInterval = setInterval(() => {
+      // On ajoute 2 caractères par frame pour aller vite
+      for (let k = 0; k < 2; k++) {
+        if (this.charIndex < this.fullCommand.length) {
+          this.currentTypedText += this.fullCommand.charAt(this.charIndex);
+          this.charIndex++;
+        }
+      }
+      this.cdr.detectChanges(); // Mise à jour écran
 
-    // 3. On attend un micro-instant que le DOM existe, puis on scroll
+      // Scroll automatique vers le bas
+      const term = document.querySelector('.terminal');
+      if (term) term.scrollTop = term.scrollHeight;
+
+      // Fin de l'écriture ?
+      if (this.charIndex >= this.fullCommand.length) {
+        clearInterval(typingInterval);
+        setTimeout(() => {
+          this.currentState = 'success';
+          this.cdr.detectChanges();
+        }, 800);
+      }
+    }, 30); // Vitesse de frappe (30ms)
+  }
+
+  // --- GESTION DU RAPPORT ---
+
+  scrollToDossier() {
+    this.showReport = true;
+    this.cdr.detectChanges();
     setTimeout(() => {
       const element = document.querySelector('.nird-dossier');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   }
 
@@ -152,7 +175,7 @@ export class MainLinuxComponent {
     this.charIndex = 0;
     this.dragPosition = { x: 0, y: 0 };
     this.bootLogs = [];
-    this.showReport = false; // On recache le rapport
+    this.showReport = false;
   }
 
   accueil() {

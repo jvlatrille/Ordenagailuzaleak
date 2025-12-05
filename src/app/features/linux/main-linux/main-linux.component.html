@@ -35,8 +35,7 @@
                 <div class="code">{{ currentTypedText }}<span class="cursor">_</span></div>
               </div>
               <div *ngIf="currentState === 'success'" class="screen-text success">
-                <div class="icon">🐧</div>
-                <h3>PC SAUVÉ !</h3>
+                <h3>PC SAUVÉ ! Sa durée de vie a été prolongée.</h3>
                 <button class="read-more-btn" (click)="scrollToDossier()">
                   Pourquoi ça marche ?
                 </button>
@@ -68,7 +67,7 @@
         (cdkDragEnded)="checkDrop($event)"
       >
         <div class="usb-cap"></div>
-        <div class="usb-body">LINUX</div>
+        <div class="usb-body">LINUX NIRD</div>
         <div class="glow-effect" *ngIf="isOverZone"></div>
       </div>
     </div>
@@ -77,7 +76,7 @@
     <div class="container">
       <h2 class="section-title">Numérique Responsable</h2>
       <p class="intro-text">
-        Vous venez d'installer une distribution Linux légère sur une machine considérée comme
+        Vous venez d'installer une distribution Linux NIRD légère sur une machine considérée comme
         "obsolète" par le marché. Voici pourquoi ce geste est crucial.
       </p>
 
@@ -104,13 +103,12 @@
         </article>
 
         <article class="info-card solution">
-          <h3>🐧 La Solution : Linux</h3>
+          <h3>💿 La Solution : La Distro Linux NIRD</h3>
           <p>
-            Linux gère la mémoire différemment. Une distribution comme
-            <strong>Linux Mint XFCE</strong> consomme 500Mo de RAM au démarrage contre 3Go pour
-            Windows. <br /><br />
-            Cela permet de réutiliser des PC vieux de 10 à 15 ans avec une fluidité parfaite et une
-            sécurité moderne.
+            Elle est conçue pour tourner sur des processeurs d'il y a 15 ans avec seulement
+            <strong>256Mo de RAM</strong>. <br /><br />
+            Résultat : Ce PC est reparti pour 5 ans de services (Bureautique, Web, Code) sans aucun
+            ralentissement.
           </p>
         </article>
 
