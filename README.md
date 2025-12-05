@@ -26,6 +26,34 @@ L’objectif : offrir une **expérience interactive, visuelle et immersive** aut
 
 ---
 
+## 🚀 Installation et Lancement
+
+Pour lancer le projet localement, suivez ces étapes :
+
+### Prérequis
+- **Node.js** installé sur votre machine
+- **npm** (inclus avec Node.js)
+- **Angular CLI** installé globalement
+
+### Instructions
+
+1. **Installer les dépendances**
+   ```bash
+   npm i
+   ```
+
+2. **Lancer le serveur de développement**
+   ```bash
+   ng serve
+   ```
+
+3. **Accéder à l'application**
+   Ouvrez votre navigateur et allez à `http://localhost:4200/`
+
+L'application se rechargera automatiquement si vous modifiez l'un des fichiers sources.
+
+---
+
 ## 🌍 Hébergement du site  
 Le site est hébergé ici : **_adresse_**
 

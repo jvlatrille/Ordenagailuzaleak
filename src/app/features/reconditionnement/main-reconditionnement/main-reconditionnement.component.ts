@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Router } from '@angular/router'; // IMPORTANT : Import du Router
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 type GameState = 'finding' | 'refurbishing';
 type ToolType = 'clean' | 'hdd' | 'ram';
 
 @Component({
   selector: 'app-main-reconditionnement',
-  standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule, FloatingBackBtnComponent], 
   templateUrl: './main-reconditionnement.component.html',
   styleUrl: './main-reconditionnement.component.css'
 })
