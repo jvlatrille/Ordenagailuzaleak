@@ -1,0 +1,22 @@
+<div *ngIf="indexQuestion < nbQuestions">
+    <app-question [question]="questions[indexQuestion]?.question" [reponses]="questions[indexQuestion]?.reponses || []"
+        [responseCorresctIndex]="questions[indexQuestion]?.responseCorresctIndex" [revealAnswers]="revealAnswers"
+        [answerStates]="answerStates" [currentSelection]="selectedReponse"
+        (reponseSelected)="onReponseSelected($event)">
+    </app-question>
+
+    <div class="butonvalider">
+        <button class="btn btn-primary" (click)="validerReponse()" [disabled]="!selectedReponse || revealAnswers">
+            Valider
+        </button>
+    </div>
+</div>
+<div *ngIf="indexQuestion >= nbQuestions">
+    <div class="result-card card p-3">
+        <h2 class="card-title">Résultats du quiz</h2>
+        <p>Vous avez obtenu {{ nbCorrectReponses }} sur {{ nbQuestions }} bonnes réponses.</p>
+        <button class="btn btn-primary" routerLink="/">
+            Retour à l'accueil
+        </button>
+    </div>
+</div>
