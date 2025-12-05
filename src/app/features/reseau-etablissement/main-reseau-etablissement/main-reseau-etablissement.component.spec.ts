@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MainReseauEtablissementComponent } from './main-reseau-etablissement.component';
 
 describe('MainReseauEtablissementComponent', () => {

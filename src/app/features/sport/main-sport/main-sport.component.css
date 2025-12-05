@@ -1,0 +1,296 @@
+/* Inspired by Demarche feature styling */
+:root {
+  --color-primary: #1e7812;
+  --color-light: #f7fff7;
+  --color-dark: #1b1b1b;
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+/* Main container styling matching .main-content */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  background: #fff;
+  min-height: calc(100vh - 4rem);
+}
+
+/* Typography */
+.display-4 {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.display-5 {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h2, h4, h5 {
+  color: var(--color-primary);
+}
+
+.card-title {
+  color: var(--color-primary);
+}
+
+/* Override for movement list titles */
+.movements-list h5 {
+  color: var(--color-dark);
+}
+
+/* Card styling matching .content-card */
+.card, .intro-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fff6 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(30, 120, 18, 0.06);
+  border: none;
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid rgba(30, 120, 18, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+/* Override for selected movement header */
+.border-primary .card-header {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* Buttons styling */
+.btn {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #166d0f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 120, 18, 0.2);
+}
+
+.btn-secondary {
+  background: var(--color-dark);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #000;
+}
+
+.btn-outline-secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline-secondary:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-success {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-success:hover {
+  background: #166d0f;
+}
+
+.btn-outline-success {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.btn-outline-success:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Specific Sport Feature Styles */
+
+/* Level selection buttons */
+.level-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Checkboxes */
+.form-check {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.form-check:hover {
+  background: rgba(30, 120, 18, 0.05);
+}
+
+.form-check-input {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+  border: 2px solid var(--color-primary);
+}
+
+.form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: var(--color-dark);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Two columns layouts */
+.checkbox-two-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.list-group-two-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.two-columns {
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .two-columns {
+    column-count: 1;
+  }
+}
+
+/* Movement list */
+.movements-list {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.movements-list .card {
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.movements-list .card:hover {
+  transform: translateX(5px);
+}
+
+.movements-list .card.border-primary {
+  border: 2px solid var(--color-primary);
+}
+
+/* Scrollbar styling */
+.movements-list::-webkit-scrollbar,
+.card-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.movements-list::-webkit-scrollbar-track,
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.movements-list::-webkit-scrollbar-thumb,
+.card-body::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.movements-list::-webkit-scrollbar-thumb:hover,
+.card-body::-webkit-scrollbar-thumb:hover {
+  background: #166d0f;
+}
+
+/* Badges */
+.badge {
+  padding: 0.5em 0.8em;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+/* Intro section specific */
+.intro-section .lead {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.benefits-list li {
+  position: relative;
+  list-style: none;
+}
+
+.benefits-list li::before {
+  content: "✓";
+  color: var(--color-primary);
+  font-weight: bold;
+  display: inline-block;
+  width: 1.5em;
+  margin-left: -1.5em;
+}

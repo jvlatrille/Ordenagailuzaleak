@@ -1,0 +1,111 @@
+:root {
+  --q-primary: #1e7812;
+  --q-bg: #ffffff;
+  --q-border: #e6f3e6;
+}
+
+.question-card {
+  background: var(--q-bg);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(30, 120, 18, 0.06);
+}
+
+.question-title {
+  margin: 0 0 12px 0;
+  color: var(--q-primary);
+  font-size: 1.15rem;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.answer-label:hover {
+  transform: translateX(4px);
+  background: linear-gradient(90deg, rgba(30, 120, 18, 0.03), rgba(30, 120, 18, 0.02));
+  border-color: var(--q-border);
+}
+
+/* custom radio appearance */
+.answer-label input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--q-primary);
+  display: inline-block;
+  position: relative;
+  outline: none;
+}
+
+.answer-label input[type='radio']::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: var(--q-primary);
+  transition: transform 0.12s ease;
+}
+
+.answer-label input[type='radio']:checked::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.answer-text {
+  color: #234;
+}
+
+.answer-label input[type='radio']:focus {
+  box-shadow: 0 0 0 4px rgba(30, 120, 18, 0.08);
+}
+
+/* Reveal states applied by the parent when validating answers */
+.answer-label.list-group-item-success {
+  background: linear-gradient(90deg, rgba(46, 150, 60, 0.08), rgba(46, 150, 60, 0.03));
+  border-color: rgba(46, 150, 60, 0.2);
+  color: #0b3b08;
+}
+
+.answer-label.list-group-item-danger {
+  background: linear-gradient(90deg, rgba(220, 53, 69, 0.06), rgba(220, 53, 69, 0.02));
+  border-color: rgba(220, 53, 69, 0.18);
+  color: #6b1416;
+}
+
+.answer-label.list-group-item-secondary {
+  background: rgba(108, 117, 125, 0.04);
+  border-color: rgba(108, 117, 125, 0.08);
+  color: #3a3f44;
+}
+
+/* When answers are revealed, disable pointer events on labels to avoid changes */
+.answer-label.list-group-item-success,
+.answer-label.list-group-item-danger,
+.answer-label.list-group-item-secondary {
+  pointer-events: none;
+}
+
+/* ensure disabled radio visuals align with reveal state */
+.answer-label input[type='radio'][disabled] {
+  opacity: 0.9;
+  border-color: rgba(0, 0, 0, 0.08);
+}

@@ -1,1 +1,71 @@
-<p>main-reseau-etablissement works!</p>
+<div class="forum-layout">
+  
+  <header class="forum-header">
+    <div class="header-content">
+      <div>
+        <h1>💬 Réseau Établissement</h1>
+        <p class="subtitle">Le fil d'actualité de la communauté NIRD</p>
+      </div>
+      <button class="btn-create" (click)="toggleForm()" [class.active]="isFormOpen">
+        {{ isFormOpen ? 'Fermer' : '+ Nouveau sujet' }}
+      </button>
+    </div>
+
+    <div class="create-panel" *ngIf="isFormOpen">
+      <div class="form-row">
+        <input type="text" [(ngModel)]="nouvelAuteur" placeholder="Votre pseudo" class="form-input author-input">
+        <input type="text" [(ngModel)]="nouveauTitre" placeholder="Titre du sujet" class="form-input title-input">
+      </div>
+      <textarea [(ngModel)]="nouveauContenu" placeholder="Exprimez-vous..." class="form-textarea"></textarea>
+      <div class="form-actions">
+        <button (click)="ajouterPost()" class="btn-submit" [disabled]="!nouveauTitre || !nouveauContenu || !nouvelAuteur">
+          Publier
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="forum-feed">
+    <div class="feed-container">
+      
+      <div *ngFor="let post of posts" class="post-card fade-in">
+        <div class="post-header">
+          <div class="user-info">
+            <div class="avatar-circle">{{ post.auteur.charAt(0) | uppercase }}</div>
+            <div class="meta-text">
+              <span class="author-name">{{ post.auteur }}</span>
+              <span class="post-date">{{ post.date | date:'dd MMM yyyy à HH:mm' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="post-body">
+          <h2 class="post-title">{{ post.titre }}</h2>
+          <p class="post-text">{{ post.contenu }}</p>
+        </div>
+
+        <div class="post-toolbar">
+          <button (click)="toggleComments(post)" class="action-btn">
+            <span class="icon">💬</span> {{ post.commentaires.length }} commentaires
+          </button>
+        </div>
+
+        <div *ngIf="post.showComments" class="comments-container">
+          <div *ngFor="let comment of post.commentaires" class="comment-item">
+            <span class="comment-author">{{ comment.auteur }} :</span>
+            <span class="comment-content">{{ comment.contenu }}</span>
+          </div>
+
+          <div class="reply-box">
+            <input #authInput placeholder="Pseudo" class="reply-input-mini">
+            <input #msgInput placeholder="Répondre..." class="reply-input-fluid" 
+                   (keyup.enter)="ajouterCommentaire(post, authInput.value, msgInput.value); msgInput.value = ''">
+            <button class="btn-send" (click)="ajouterCommentaire(post, authInput.value, msgInput.value); msgInput.value = ''">➤</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-floating-back-btn></app-floating-back-btn>

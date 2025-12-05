@@ -1,10 +1,11 @@
 import { Component, Renderer2 } from '@angular/core';
 import { SpaceInvader } from '../space-invader/space-invader';
 import { CommonModule } from '@angular/common';
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 @Component({
   selector: 'app-main-anti-gafam',
-  imports: [SpaceInvader, CommonModule ],
+  imports: [SpaceInvader, CommonModule, FloatingBackBtnComponent ],
   templateUrl: './main-anti-gafam.component.html',
   styleUrl: './main-anti-gafam.component.css'
 })
