@@ -1,0 +1,48 @@
+button {
+  background: linear-gradient(90deg, #1e7812, #2aa02a);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(30, 120, 18, 0.18);
+  transition: transform 0.08s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  margin-left: auto;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(30, 120, 18, 0.22);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(30, 120, 18, 0.18);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: grayscale(0.03);
+}
+
+button:focus {
+  outline: 3px solid rgba(30, 120, 18, 0.18);
+  outline-offset: 2px;
+}
+
+/* Small responsive tweak */
+@media (max-width: 480px) {
+  button {
+    width: 100%;
+    padding: 0.7rem 1rem;
+  }
+}
+
+.butonvalider {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
