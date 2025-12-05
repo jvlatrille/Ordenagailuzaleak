@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "titre": "Comment migrer le parc informatique du CDI sous Linux ?",
+      "auteur": "ProfTechno_64",
+      "contenu": "Bonjour...",
+      "date": "2025-12-04T10:00:00",
+      "commentaires": [
+        {
+          "auteur": "AdminSys_Rebelle",
+          "contenu": "C'est une super idée...",
+          "date": "2025-12-04T10:30:00"
+        },
+        {
+          "auteur": "rageux",
+          "contenu": "Dire que c'est une super idée ça suffit pas",
+          "date": "2025-12-04T22:42:44.150Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "titre": "Alternative libre à Microsoft Office...",
+      "auteur": "Direction_Lycée_Carnot",
+      "contenu": "Nous cherchons...",
+      "date": "2025-12-04T14:00:00",
+      "commentaires": [
+        {
+          "auteur": "Test",
+          "contenu": "Vous cherchez ???",
+          "date": "2025-12-04T22:35:41.153Z"
+        }
+      ]
+    }
+  ]
+}
