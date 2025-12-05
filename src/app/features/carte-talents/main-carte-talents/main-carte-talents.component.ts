@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 @Component({
   selector: 'app-main-carte-talents',
-  imports: [],
+  imports: [FloatingBackBtnComponent],
   templateUrl: './main-carte-talents.component.html',
-  styleUrl: './main-carte-talents.component.css'
+  styleUrls: ['./main-carte-talents.component.css']
 })
 export class MainCarteTalentsComponent {
-
+  
 }

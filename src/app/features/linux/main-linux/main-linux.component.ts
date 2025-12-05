@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { DragDropModule, CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 @Component({
   selector: 'app-main-linux',
-  standalone: true,
-  imports: [CommonModule, DragDropModule],
+  imports: [CommonModule, DragDropModule,FloatingBackBtnComponent],
   templateUrl: './main-linux.component.html',
   styleUrls: ['./main-linux.component.css'],
 })

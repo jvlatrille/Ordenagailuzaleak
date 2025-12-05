@@ -2,6 +2,7 @@ import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 interface Commentaire {
   auteur: string;
@@ -22,7 +23,7 @@ interface Post {
 @Component({
   selector: 'app-main-reseau-etablissement',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FloatingBackBtnComponent],
   templateUrl: './main-reseau-etablissement.component.html',
   styleUrl: './main-reseau-etablissement.component.css'
 })

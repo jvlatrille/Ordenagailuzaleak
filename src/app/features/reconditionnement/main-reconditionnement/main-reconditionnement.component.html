@@ -1,1 +1,184 @@
-<p>main-reconditionnement works!</p>
+<div class="nird-unified-container">
+
+  <!-- ========================================= -->
+  <!-- SECTION 1 : L'INFOGRAPHIE (Informations) -->
+  <!-- ========================================= -->
+  <header class="infographic-header">
+    <h1>♻️ Le Reconditionnement au cœur de la Démarche NIRD</h1>
+    <p><strong>NIRD : Numérique Inclusif, Responsable et Durable.</strong> Le reconditionnement par les élèves : un levier d'action concret pour une école éco-citoyenne.</p>
+  </header>
+
+  <div class="infographic-grid">
+    <!-- PILIER 1 : IMPACT ÉCOLOGIQUE -->
+    <section class="pillar ecological">
+      <div class="icon-circle">🌍</div>
+      <h2>Impact Écologique</h2>
+      <h3>Sobriété numérique et planète</h3>
+      <p>L'achat d'un équipement reconditionné évite l'impact environnemental massif lié à la fabrication du neuf.</p>
+      <div class="key-figure">
+        <span class="value">Jusqu'à <strong class="highlight-eco">97%</strong></span>
+        <span class="label">d'impact annuel évité par rapport à un équipement neuf.</span>
+      </div>
+    </section>
+
+    <!-- PILIER 2 : IMPACT PÉDAGOGIQUE -->
+    <section class="pillar pedagogical">
+      <div class="icon-circle">🧠</div>
+      <h2>Impact Pédagogique</h2>
+      <h3>Compétences et citoyenneté</h3>
+      <ul>
+        <li><strong>Compétences :</strong> Maîtrise hardware et systèmes libres (Linux).</li>
+        <li><strong>Projet actif :</strong> Fait **par les élèves** dans un cadre valorisant.</li>
+        <li><strong>Esprit critique :</strong> Formation à la citoyenneté numérique.</li>
+      </ul>
+    </section>
+
+    <!-- PILIER 3 : IMPACT SOCIAL -->
+    <section class="pillar social">
+      <div class="icon-circle">🤝</div>
+      <h2>Impact Social</h2>
+      <h3>Réduction de la fracture numérique</h3>
+      <p>Le matériel reconditionné rééquipe les écoles et les familles modestes, favorisant l'inclusion.</p>
+      <div class="key-figure">
+        <span class="value"><strong class="highlight-social">Solidarité</strong></span>
+        <span class="label">Équiper les territoires et les publics les plus fragiles.</span>
+      </div>
+    </section>
+
+    <!-- PILIER 4 : IMPACT ÉCONOMIQUE -->
+    <section class="pillar budget">
+        <div class="icon-circle">💰</div>
+        <h2>Impact Économique</h2>
+        <h3>Des économies réelles</h3>
+        <p>Prolonger la durée de vie du matériel libère du budget pour d'autres projets pédagogiques.</p>
+        <div class="key-figure">
+            <span class="value"><strong class="highlight-budget">-50%</strong></span>
+            <span class="label">De coût moyen par poste sur 5 ans.</span>
+        </div>
+    </section>
+
+    <!-- PILIER 5 : SOUVERAINETÉ NUMÉRIQUE -->
+    <section class="pillar sovereign">
+        <div class="icon-circle">🛡️</div>
+        <h2>Souveraineté Numérique</h2>
+        <h3>Protection des Données</h3>
+        <p>L'installation de systèmes libres (Linux) garantit qu'aucune donnée élève n'est captée par des GAFAM.</p>
+        <div class="key-figure">
+            <span class="value"><strong class="highlight-sovereign">100%</strong></span>
+            <span class="label">Logiciels Libres et formats ouverts (RGPD).</span>
+        </div>
+    </section>
+  </div>
+
+  <!-- SÉPARATEUR VISUEL -->
+  <div class="separator-banner">
+    <span class="separator-text">PASSEZ À L'ACTION : MISSION RECONDITIONNEMENT</span>
+  </div>
+
+
+  <!-- ========================================= -->
+  <!-- SECTION 2 : LE MINI-JEU (Intéractif) -->
+  <!-- ========================================= -->
+  <div class="game-container pixel-art-theme">
+    <h2 class="game-title">🎮 Mission : Opération "Seconde Vie"</h2>
+    
+    <!-- ÉTAPE 1 : LA RECHERCHE -->
+    <div class="game-stage finding-stage" *ngIf="gameState === 'finding'">
+        <p class="game-instructions">
+          Trouve le vieux matériel caché dans la classe ! Clique sur les cachettes potentielles.
+        </p>
+        <!-- SCÈNE DE CLASSE -->
+        <div class="classroom-scene" [class.cupboard-is-open]="cupboardOpen">
+          
+          <!-- Zones cliquables -->
+          <div class="hiding-spot desk-1" (click)="checkSpot('desk')"></div>
+          <div class="hiding-spot trash-can" (click)="checkSpot('trash')"></div>
+          
+          <!-- L'armoire -->
+          <div class="hiding-spot cupboard-zone" 
+               (click)="clickCupboard()"
+               [class.clickable-laptop]="cupboardOpen">
+          </div>
+      
+          <!-- Feedback -->
+          <div class="feedback-message" *ngIf="feedbackMessage">{{ feedbackMessage }}</div>
+        </div>
+    </div>
+
+
+    <!-- ÉTAPE 2 : LE RECONDITIONNEMENT -->
+    <div class="game-stage refurbish-bench" *ngIf="gameState === 'refurbishing'">
+      <p class="game-instructions">
+        L'ordinateur démarre mal ! Répare-le étape par étape.
+      </p>
+
+      <div class="workbench-layout">
+        <!-- ORDINATEUR AVEC ÉTATS -->
+        <div class="laptop-preview" 
+             [class.state-1-dirty]="!refurbishSteps.cleaned"
+             [class.state-2-hdd-error]="refurbishSteps.cleaned && !refurbishSteps.hdd"
+             [class.state-3-ram-error]="refurbishSteps.cleaned && refurbishSteps.hdd && !refurbishSteps.ram"
+             [class.state-4-finished]="refurbishSteps.cleaned && refurbishSteps.hdd && refurbishSteps.ram">
+        </div>
+
+        <div class="toolbox-container">
+            <!-- La boîte à outils -->
+            <div class="toolbox">
+            <!-- Outil 1 : Nettoyage -->
+            <div class="tool-item cloth" 
+                (click)="useTool('clean')" 
+                [class.used]="refurbishSteps.cleaned"
+                title="Nettoyer la poussière">
+                <span class="tool-label">Nettoyer l'ordinateur</span>
+            </div>
+            
+            <!-- Outil 2 : Changer le disque dur -->
+            <div class="tool-item ssd" 
+                (click)="useTool('hdd')"
+                [class.locked]="!refurbishSteps.cleaned"
+                [class.used]="refurbishSteps.hdd"
+                title="Remplacer le vieux disque par un SSD">
+                <span class="tool-label">Nouveau disque SSD</span>
+            </div>
+
+            <!-- Outil 3 : Ajouter de la RAM -->
+            <div class="tool-item ram" 
+                (click)="useTool('ram')"
+                [class.locked]="!refurbishSteps.cleaned || !refurbishSteps.hdd"
+                [class.used]="refurbishSteps.ram"
+                title="Augmenter la mémoire vive">
+                <span class="tool-label">Plus de RAM</span>
+            </div>
+            </div>
+
+            <!-- BOUTON ET APRÈS (Apparaît à la fin) -->
+            <button class="next-step-btn pixel-btn" 
+                    *ngIf="refurbishSteps.cleaned && refurbishSteps.hdd && refurbishSteps.ram"
+                    (click)="openFinalPopup()">
+                Et après ? ➜
+            </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ÉTAPE 3 : POP-UP FINALE -->
+    <div class="success-popup-overlay" *ngIf="showSuccessPopup">
+      <div class="success-popup pixel-border">
+        <h3>✨ Mission Accomplie ! ✨</h3>
+        <div class="final-laptop-icon"></div>
+        <p>
+          Bravo ! Cet ordinateur est désormais propre et fonctionnel matériellement.
+        </p>
+        <div class="final-step-box">
+            <p><strong>La dernière étape clé :</strong></p>
+            <p>Installer un système d'exploitation <strong>libre et léger (ex: Linux PrimTux)</strong> pour le rendre utilisable par les élèves !</p>
+        </div>
+        <!-- Bouton Navigation vers Linux -->
+        <button class="restart-btn pixel-btn" (click)="goToLinux()">En savoir plus</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<app-floating-back-btn></app-floating-back-btn>

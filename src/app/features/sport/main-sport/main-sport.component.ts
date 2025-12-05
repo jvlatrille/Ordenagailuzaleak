@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 interface SportProfile {
   level: 'beginner' | 'intermediate' | 'advanced' | null;
@@ -29,7 +30,7 @@ interface Product {
 @Component({
   selector: 'app-main-sport',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FloatingBackBtnComponent],
   templateUrl: './main-sport.component.html',
   styleUrl: './main-sport.component.css'
 })
