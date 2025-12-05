@@ -1,4 +1,11 @@
-import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  ChangeDetectorRef,
+  HostListener,
+  OnInit,
+} from '@angular/core';
 import { DragDropModule, CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 
@@ -12,8 +19,9 @@ import { CommonModule } from '@angular/common';
 export class MainLinuxComponent {
   @ViewChild('pcDropZone') pcDropZone!: ElementRef;
 
-  currentState: 'bsod' | 'booting' | 'terminal' | 'success' = 'bsod';
+  currentState: 'windows' | 'bsod' | 'booting' | 'terminal' | 'success' = 'windows';
   showUsb = true;
+  isPlugged = false;
   isDragging = false;
   isOverZone = false;
   dragPosition = { x: 0, y: 0 };
@@ -32,11 +40,18 @@ export class MainLinuxComponent {
 
   // Commande d'installation
   fullCommand =
-    'sudo install-linux NIRD--save-planet\n> Formatting Windows...\n> Installing Linux NIRD...\n> Drivers loaded.\n> System is ready.';
+    'sudo install-linux NIRD--save-planet\n> Formatting Windows...\n> Installing Linux NIRD. System is ready.';
   currentTypedText = '';
   charIndex = 0;
 
   constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.currentState = 'bsod';
+      this.cdr.detectChanges();
+    }, 3000);
+  }
 
   // --- GESTION DU DRAG & DROP ---
 
@@ -53,14 +68,22 @@ export class MainLinuxComponent {
     const isHit = this.checkCollision(event.dropPoint);
 
     if (isHit && this.currentState === 'bsod') {
-      this.isOverZone = false;
-      // Lancement immédiat de la séquence
-      this.startBootSequence();
+      this.plugUsbIn(); // Nouvelle fonction pour gérer l'insertion
     } else {
-      // Raté : on remet la clé à sa place
       this.isOverZone = false;
       this.dragPosition = { x: 0, y: 0 };
     }
+  }
+  plugUsbIn() {
+    this.isOverZone = false;
+    this.showUsb = false; // On cache la clé draggable
+    this.isPlugged = true; // On affiche la clé fixe sur la tour
+    this.cdr.detectChanges();
+
+    // On lance le boot après un petit délai réaliste
+    setTimeout(() => {
+      this.startBootSequence();
+    }, 500);
   }
 
   checkCollision(point: { x: number; y: number }): boolean {
@@ -170,12 +193,14 @@ export class MainLinuxComponent {
 
   restart() {
     this.showUsb = true;
-    this.currentState = 'bsod';
+    this.currentState = 'windows';
+    this.isPlugged = false;
     this.currentTypedText = '';
     this.charIndex = 0;
     this.dragPosition = { x: 0, y: 0 };
     this.bootLogs = [];
     this.showReport = false;
+    this.ngOnInit();
   }
 
   accueil() {

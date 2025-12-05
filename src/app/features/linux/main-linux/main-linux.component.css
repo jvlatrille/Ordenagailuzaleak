@@ -416,3 +416,102 @@ button:active {
     min-height: 100vh;
   } /* Plein écran sur mobile */
 }
+
+/* --- LE FAUX BUREAU WINDOWS --- */
+.windows-desktop {
+  background-color: #3a6ea5; /* Bleu Windows classique */
+  position: relative;
+  font-family: sans-serif;
+  color: white;
+  padding: 10px;
+}
+
+.win-icon {
+  width: 40px;
+  text-align: center;
+  font-size: 8px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px black;
+}
+.win-icon::before {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 20px;
+  background: white;
+  margin: 0 auto 2px auto;
+  border: 1px solid #ccc;
+}
+
+.win-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #c0c0c0;
+  border-top: 1px solid white;
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  color: black;
+}
+.start-btn {
+  background: linear-gradient(to bottom, #2ecc71, #27ae60);
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0 10px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 16px;
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: 1px 1px 0 black;
+  margin-right: auto;
+}
+.time {
+  font-size: 9px;
+  border-left: 1px solid #888;
+  padding-left: 5px;
+  margin-right: 5px;
+}
+
+.usb-stick-plugged {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  animation: plugIn 0.2s ease-out;
+}
+
+.usb-body-plugged {
+  width: 40px; /* Un peu plus courte car enfoncée */
+  height: 12px;
+  background: var(--color-accent); /* Orange */
+  color: white;
+  font-size: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 2px 2px; /* Forme verticale */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* On la met verticale pour simuler qu'elle sort de la tour */
+  transform: rotate(90deg);
+}
+
+@keyframes plugIn {
+  from {
+    transform: translateX(-50%) scale(2);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.usb-stick {
+  z-index: 999;
+}

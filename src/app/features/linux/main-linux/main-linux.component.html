@@ -23,6 +23,15 @@
         <div class="monitor-stand">
           <div class="monitor-bezel">
             <div class="screen-content" [ngClass]="currentState">
+              <div *ngIf="currentState === 'windows'" class="screen-text windows-desktop">
+                <div class="win-icon">My PC</div>
+                <div class="win-icon">Trash</div>
+                <div class="win-taskbar">
+                  <div class="start-btn">Start</div>
+                  <div class="time">12:00 PM</div>
+                </div>
+              </div>
+
               <div *ngIf="currentState === 'bsod'" class="screen-text bsod">
                 <span>:(</span>
                 <h2>CRITICAL_ERROR</h2>
@@ -35,7 +44,10 @@
                 <div class="code">{{ currentTypedText }}<span class="cursor">_</span></div>
               </div>
               <div *ngIf="currentState === 'success'" class="screen-text success">
-                <h3>PC SAUVÉ ! Sa durée de vie a été prolongée.</h3>
+                <h3>
+                  PC SAUVÉ !<br />
+                  Sa durée de vie a été prolongée.
+                </h3>
                 <button class="read-more-btn" (click)="scrollToDossier()">
                   Pourquoi ça marche ?
                 </button>
