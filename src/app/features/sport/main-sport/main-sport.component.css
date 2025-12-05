@@ -1,0 +1,384 @@
+/* Modern CSS with Bootstrap integration */
+:host {
+  display: block;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Custom gradient background for container */
+.container {
+  background: linear-gradient(135deg, var(--bs-light) 0%, #d4f1d1 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(8, 24, 6, 0.1);
+  min-height: calc(100vh - 4rem);
+  margin-bottom: 2rem;
+}
+
+/* Enhanced title styling */
+.display-4 {
+  color: var(--bs-primary);
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Step buttons enhanced */
+.btn-primary {
+  background: var(--bs-primary);
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 120, 18, 0.4);
+  background: #176210;
+}
+
+.btn-outline-secondary {
+  border: 2px solid var(--bs-primary);
+  color: var(--bs-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-outline-secondary:hover {
+  background: var(--bs-primary);
+  color: white;
+  border-color: var(--bs-primary);
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  background: var(--bs-dark);
+  border-color: var(--bs-dark);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #0f2b0a;
+  border-color: #0f2b0a;
+  color: white;
+}
+
+.btn-success {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-success:hover {
+  background: #176210;
+  border-color: #176210;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s;
+  background: white;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  font-weight: 700;
+  padding: 1rem 1.25rem;
+  font-size: 1.25rem;
+}
+
+.card-title {
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Level selection buttons */
+.btn-success,
+.btn-outline-success {
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  margin: 0.5rem;
+}
+
+.btn-success {
+  background: var(--bs-primary);
+  border: none;
+}
+
+.btn-success:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(30, 120, 18, 0.3);
+  background: #176210;
+}
+
+.btn-outline-success {
+  border: 2px solid var(--bs-primary);
+  color: var(--bs-primary);
+}
+
+.btn-outline-success:hover {
+  background: var(--bs-primary);
+  color: white;
+  border-color: var(--bs-primary);
+}
+
+/* Checkbox styling enhancement */
+.form-check {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  transition: background 0.2s;
+}
+
+.form-check:hover {
+  background: rgba(30, 120, 18, 0.05);
+  border-radius: 8px;
+}
+
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.25rem;
+  cursor: pointer;
+  border: 2px solid var(--bs-primary);
+}
+
+.form-check-input:checked {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(30, 120, 18, 0.25);
+  border-color: var(--bs-primary);
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
+
+/* Badge styling */
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Movement cards */
+.card.border-primary {
+  border: 3px solid var(--bs-primary) !important;
+  box-shadow: 0 10px 30px rgba(30, 120, 18, 0.3);
+}
+
+/* Alert styling */
+.alert {
+  border-radius: 10px;
+  border: none;
+  font-weight: 500;
+  padding: 1.25rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* List group styling */
+.list-group-item {
+  padding: 1rem 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+
+/* Custom spacing for selected level indicator */
+small {
+  color: #666;
+  font-size: 1rem;
+}
+
+small strong {
+  color: var(--bs-primary);
+  font-weight: 700;
+}
+
+/* Labels and headings */
+label {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Ordered and unordered lists */
+ol, ul {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+ol li, ul li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+/* Two columns layout for lists */
+.two-columns {
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+.two-columns li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Two columns layout for list-group */
+.list-group-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.list-group-two-columns .list-group-item {
+  margin-bottom: 0;
+}
+
+/* Two columns layout for checkboxes */
+.checkbox-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+}
+
+.checkbox-two-columns .form-check {
+  margin-bottom: 0;
+}
+
+
+
+
+
+/* Movement cards specific styling */
+.row > div {
+  margin-bottom: 1.5rem;
+}
+
+.movements-list {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Scrollbar styling */
+.movements-list::-webkit-scrollbar,
+.card-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.movements-list::-webkit-scrollbar-track,
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.movements-list::-webkit-scrollbar-thumb,
+.card-body::-webkit-scrollbar-thumb {
+  background: var(--bs-primary);
+  border-radius: 10px;
+}
+
+.movements-list::-webkit-scrollbar-thumb:hover,
+.card-body::-webkit-scrollbar-thumb:hover {
+  background: #176210;
+}
+
+/* Inner cards styling */
+.card .card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card .card.border-primary {
+  border-width: 2px !important;
+}
+
+/* Ensure scrollability */
+body {
+  overflow-y: scroll;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  h5 {
+    font-size: 1.25rem;
+  }
+  
+  /* Disable two columns on mobile */
+  .two-columns {
+    column-count: 1;
+  }
+  
+  .list-group-two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-two-columns {
+    grid-template-columns: 1fr;
+  }
+}
