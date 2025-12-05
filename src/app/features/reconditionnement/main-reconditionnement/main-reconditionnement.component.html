@@ -1,46 +1,126 @@
-<div class="infographic-container">
-    <header class="infographic-header">
-        <h1>♻️ Le Reconditionnement au cœur de la Démarche NIRD</h1>
-        <p><strong>NIRD : Numérique Inclusif, Responsable et Durable.</strong> Le reconditionnement par les élèves : un levier d'action concret pour une école éco-citoyenne.</p>
-    </header>
+<div class="nird-unified-container">
 
-    <div class="infographic-grid">
+  <header class="infographic-header">
+    <h1>♻️ Le Reconditionnement au cœur de la Démarche NIRD</h1>
+    <p><strong>NIRD : Numérique Inclusif, Responsable et Durable.</strong> Le reconditionnement par les élèves : un levier d'action concret pour une école éco-citoyenne.</p>
+  </header>
 
-        <section class="pillar ecological">
-            <div class="icon-circle">🌍</div>
-            <h2>Impact Écologique</h2>
-            <h3>Sobriété numérique et planète</h3>
-            <p>L'achat d'un équipement reconditionné (ordinateur portable ou fixe) permet d'éviter l'impact environnemental lié à la fabrication du neuf.</p>
-            <div class="key-figure">
-                <span class="value">Jusqu'à <strong class="highlight-eco">97%</strong></span>
-                <span class="label">d'impact annuel évité (hors radiations ionisantes) par rapport à un équipement neuf.</span>
-            </div>
-        </section>
+  <div class="infographic-grid">
+    <section class="pillar ecological">
+      <div class="icon-circle">🌍</div>
+      <h2>Impact Écologique</h2>
+      <h3>Sobriété numérique et planète</h3>
+      <p>L'achat d'un équipement reconditionné évite l'impact environnemental massif lié à la fabrication du neuf.</p>
+      <div class="key-figure">
+        <span class="value">Jusqu'à <strong class="highlight-eco">97%</strong></span>
+        <span class="label">d'impact annuel évité par rapport à un équipement neuf.</span>
+      </div>
+    </section>
 
-        <section class="pillar pedagogical">
-            <div class="icon-circle">🧠</div>
-            <h2>Impact Pédagogique</h2>
-            <h3>Compétences et formation citoyenne</h3>
-            <ul>
-                <li><strong>Développement de compétences :</strong> Maîtrise du matériel (hardware) et des systèmes d'exploitation libres (Linux, PrimTux).</li>
-                <li><strong>Projet actif :</strong> Le reconditionnement est réalisé **par les élèves** (collèges et lycées) et s'inscrit dans un cadre éducatif valorisant.</li>
-                <li><strong>Valeurs :</strong> Formation à l'esprit critique et à la citoyenneté numérique.</li>
-            </ul>
-        </section>
+    <section class="pillar pedagogical">
+      <div class="icon-circle">🧠</div>
+      <h2>Impact Pédagogique</h2>
+      <h3>Compétences et citoyenneté</h3>
+      <ul>
+        <li><strong>Compétences :</strong> Maîtrise hardware et systèmes libres (Linux).</li>
+        <li><strong>Projet actif :</strong> Fait **par les élèves** dans un cadre valorisant.</li>
+        <li><strong>Esprit critique :</strong> Formation à la citoyenneté numérique.</li>
+      </ul>
+    </section>
 
-        <section class="pillar social">
-            <div class="icon-circle">🤝</div>
-            <h2>Impact Social & Solidaire</h2>
-            <h3>Réduction de la fracture numérique</h3>
-            <p>Le matériel reconditionné rééquipe les écoles et est distribué aux familles modestes, favorisant l'inclusion.</p>
-            <div class="key-figure">
-                <span class="value"><strong class="highlight-social">50%</strong></span>
-                <span class="label">Objectif national de matériel informatique public réemployé d'ici <strong class="highlight-social">2025</strong>.</span>
-            </div>
-        </section>
+    <section class="pillar social">
+      <div class="icon-circle">🤝</div>
+      <h2>Impact Social</h2>
+      <h3>Réduction de la fracture numérique</h3>
+      <p>Le matériel reconditionné rééquipe les écoles et les familles modestes, favorisant l'inclusion.</p>
+      <div class="key-figure">
+        <span class="value"><strong class="highlight-social">Solidarité</strong></span>
+        <span class="label">Équiper les territoires et les publics les plus fragiles.</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="separator-banner">
+    <span class="separator-text">⬇️ PASSEZ À L'ACTION : MISSION RECONDITIONNEMENT ⬇️</span>
+  </div>
+
+
+  <div class="game-container pixel-art-theme">
+    <h2 class="game-title">🎮 Mission : Opération "Seconde Vie"</h2>
+    
+    <div class="game-stage finding-stage" *ngIf="gameState === 'finding'">
+        <p class="game-instructions">
+          Trouve le vieux matériel caché dans la classe ! Clique sur les cachettes potentielles.
+        </p>
+        <div class="classroom-scene" [class.cupboard-is-open]="cupboardOpen">
+          
+          <div class="hiding-spot desk-1" (click)="checkSpot('desk')"></div>
+          <div class="hiding-spot trash-can" (click)="checkSpot('trash')"></div>
+          
+          <div class="hiding-spot cupboard-zone" 
+               (click)="clickCupboard()"
+               [class.clickable-laptop]="cupboardOpen">
+          </div>
+      
+          <div class="feedback-message" *ngIf="feedbackMessage">{{ feedbackMessage }}</div>
+        </div>
     </div>
 
-    <footer class="infographic-footer">
-        <p><strong>La solution NIRD :</strong> Donner une seconde vie aux machines anciennes grâce aux logiciels libres et à une dynamique collective impliquant l'établissement et les collectivités locales.</p>
-    </footer>
+
+    <div class="game-stage refurbish-bench" *ngIf="gameState === 'refurbishing'">
+      <p class="game-instructions">
+        Le PC est sale et lent ! Utilise les outils dans l'ordre pour le remettre à neuf.
+      </p>
+
+      <div class="workbench-layout">
+        <div class="laptop-preview" 
+             [class.is-dirty]="!refurbishSteps.cleaned"
+             [class.is-clean-empty]="refurbishSteps.cleaned && (!refurbishSteps.hdd || !refurbishSteps.ram)"
+             [class.is-finished]="refurbishSteps.cleaned && refurbishSteps.hdd && refurbishSteps.ram">
+        </div>
+
+        <div class="toolbox">
+          <div class="tool-item cloth" 
+               (click)="useTool('clean')" 
+               [class.used]="refurbishSteps.cleaned"
+               title="Nettoyer la poussière">
+               <span class="tool-label">1. Nettoyer</span>
+          </div>
+          
+          <div class="tool-item ssd" 
+               (click)="useTool('hdd')"
+               [class.locked]="!refurbishSteps.cleaned"
+               [class.used]="refurbishSteps.hdd"
+               title="Remplacer le vieux disque mécanique par un SSD rapide">
+               <span class="tool-label">2. Nouveau SSD</span>
+          </div>
+
+          <div class="tool-item ram" 
+               (click)="useTool('ram')"
+               [class.locked]="!refurbishSteps.cleaned"
+               [class.used]="refurbishSteps.ram"
+               title="Augmenter la mémoire vive">
+               <span class="tool-label">3. + RAM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="success-popup-overlay" *ngIf="showSuccessPopup">
+      <div class="success-popup pixel-border">
+        <h3>✨ Mission Accomplie ! ✨</h3>
+        <div class="final-laptop-icon"></div>
+        <p>
+          Bravo ! Cet ordinateur est désormais propre et fonctionnel matériellement.
+        </p>
+        <div class="final-step-box">
+            <p><strong>La dernière étape clé :</strong></p>
+            <p>Installer un système d'exploitation <strong>libre et léger (ex: Linux PrimTux)</strong> pour le rendre utilisable par les élèves !</p>
+        </div>
+        <button class="restart-btn pixel-btn" (click)="resetGame()">Recommencer</button>
+      </div>
+    </div>
+
+  </div>
 </div>
