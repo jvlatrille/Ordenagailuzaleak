@@ -1,0 +1,21 @@
+<div class="question-card card p-3">
+    <h2 class="question-title card-title">{{ question }}</h2>
+
+    <div class="row answers gx-3 gy-2 mt-3">
+        <div class="col-6" *ngFor="let reponse of reponses; index as i">
+            <label
+                class="answer-label list-group-item list-group-item-action d-flex align-items-center w-100 border rounded p-2"
+                [ngClass]="{
+                    'list-group-item-success': revealAnswers && answerStates && answerStates[i] === 'correct',
+                    'list-group-item-danger': revealAnswers && answerStates && answerStates[i] === 'wrong',
+                    'list-group-item-secondary': revealAnswers && answerStates && answerStates[i] === 'neutral'
+                }">
+
+                <input type="radio" name="reponse" [value]="reponse" (change)="onReponseSelected(reponse)"
+                    [checked]="reponse === currentSelection" [disabled]="revealAnswers" />
+
+                <span class="answer-text">{{ reponse }}</span>
+            </label>
+        </div>
+    </div>
+</div>
