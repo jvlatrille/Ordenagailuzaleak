@@ -9,15 +9,18 @@
 
 h3 {
     color: var(--color-primary);
+    font-weight: bold;
 }
 
 .sidebar {
   background-color: var(--color-light);
   padding: 30px 20px;
   overflow-y: auto;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
 }
     
 .sidebar ul {
@@ -43,6 +46,14 @@ h3 {
   letter-spacing: 0.3px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-icon {
+  font-size: 18px;
+  transition: all 0.3s ease;
 }
 
 .sidebar a::before {
@@ -75,13 +86,97 @@ h3 {
 .main-content {
   overflow: hidden;
   position: relative;
+  background-image: url('/NDI_mainPage._2025_18_44_33.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.main-content img {
+.image-overlay {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  position: relative;
+}
+
+.overlay-btn {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: var(--color-primary);
+  border: 4px solid white;
+  border-radius: 50% 50% 50% 0;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  rotate: -45deg;
+}
+
+.overlay-btn:hover {
+  transform: translate(-50%, -100%) scale(1.15);
+  box-shadow: 0 6px 25px rgba(30, 120, 18, 0.6);
+  background: #1a6b10;
+}
+
+.overlay-btn:hover .btn-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-icon {
+  color: var(--color-light);
+  font-size: 28px;
+  line-height: 1;
+  rotate: 45deg;
+}
+
+.btn-text {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.btn-text::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--color-dark);
+}
+
+.image-protection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .carte-talents-container {
@@ -119,4 +214,19 @@ h3 {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(30, 120, 18, 0.4);
   background: linear-gradient(135deg, #1e7812 0%, #1a8713 100%);
+}
+
+/* Synchronization hover state */
+.sidebar a.sync-hover {
+  background-color: rgba(30, 120, 18, 0.2);
+  transform: translateX(8px);
+}
+
+.sidebar a.sync-hover::before {
+  transform: scaleY(1);
+}
+
+.overlay-btn.sync-hover {
+  transform: translate(-50%, -100%) scale(1.15);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
 }

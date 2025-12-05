@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
-interface TeamMember {
-  name: string;
-  surname: string;
-  role: string;
-  image: string;
-}
+import { FloatingBackBtnComponent } from '../../../shared/components/floating-back-btn/floating-back-btn.component';
 
 @Component({
   selector: 'app-main-carte-talents',
-  imports: [CommonModule],
+  imports: [FloatingBackBtnComponent],
   templateUrl: './main-carte-talents.component.html',
   styleUrls: ['./main-carte-talents.component.css']
 })

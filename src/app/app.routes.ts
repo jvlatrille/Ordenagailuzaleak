@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { Intro1Component } from './features/intro1/intro1.component';
+import { Intro2Component } from './features/intro2/intro2.component';
 import { reconditionnementRoutes } from './features/reconditionnement/reconditionnement.routes';
 import { linuxRoutes } from './features/linux/linux.routes';
 import { reseauEtablissementRoutes } from './features/reseau-etablissement/reseau-etablissement.routes';
@@ -11,6 +13,14 @@ import { chatbotRoutes } from './features/chatbot/chatbot.routes';
 export const routes: Routes = [
   {
     path: '',
+    component: Intro1Component
+  },
+  {
+    path: 'intro2',
+    component: Intro2Component
+  },
+  {
+    path: 'home',
     loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
   },
   {
@@ -53,7 +63,6 @@ export const routes: Routes = [
     children: chatbotRoutes
   },
   
-  // Wildcard route - redirige toute route non répertoriée vers la racine
   {
     path: '**',
     redirectTo: ''
